@@ -11,6 +11,7 @@ spring:
 xo:
   cache:
      x-auth-token: false
+     config-file: classpath:redisson-${spring.profiles.active}.yml
 logging:
   level:
     root: WARN
