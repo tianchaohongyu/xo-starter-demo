@@ -10,7 +10,7 @@ spring:
       enabled: never
 xo:
   cache:
-    config-file: redisson-${spring.profiles.active}.yml
+    config-file: classpath:redisson-${spring.profiles.active}.yml
   api:
     doc:
       title: 后台管理服务
