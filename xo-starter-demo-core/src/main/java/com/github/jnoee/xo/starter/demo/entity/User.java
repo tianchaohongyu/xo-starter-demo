@@ -36,22 +36,28 @@ public class User extends AuditEntity<User> implements AuthUser {
   /** 姓名 */
   @LogField(text = "姓名")
   private String name;
+
   /** 用户名 */
   @LogField(text = "用户名")
   private String username;
+
   /** 密码 */
   private String password;
+
   /** 启用状态 */
   @LogField(text = "启用状态")
   @Type(type = "IEnum")
   private EnabledStatus status = EnabledStatus.ENABLED;
+
   /** 排序 */
   @LogField(text = "排序")
   private Integer ordinal = 999;
+
   /** 默认职务 */
   @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "defaultActorId")
   private Actor defaultActor;
+  
   /** 用户职务 */
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE,
       orphanRemoval = true)
