@@ -26,7 +26,7 @@ create table Organ
 /*==============================================================*/
 /* Table: User                                                  */
 /*==============================================================*/
-create table User
+create table Worker
 (
    id                   char(36) not null,
    name                 varchar(20) not null,

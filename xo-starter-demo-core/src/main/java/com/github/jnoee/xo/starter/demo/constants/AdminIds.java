@@ -6,7 +6,7 @@ package com.github.jnoee.xo.starter.demo.constants;
 public class AdminIds {
   /** 系统根机构ID */
   public static final String ORGAN_ID = "ADMINOID-0000-0000-0000-000000000000";
-  /** 管理员用户ID */
+  /** 管理员工作人员ID */
   public static final String USER_ID = "ADMINUID-0000-0000-0000-000000000000";
   /** 管理员角色ID */
   public static final String ROLE_ID = "ADMINRID-0000-0000-0000-000000000000";

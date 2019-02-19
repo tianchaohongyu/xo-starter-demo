@@ -48,7 +48,6 @@
 
 	<modules>
 		<module>xo-starter-demo-core</module>
-		<module>xo-starter-demo-rest</module>
-		<module>xo-starter-demo-dwz</module>
+		<module>xo-starter-demo-work-server</module>
 	</modules>
 </project>
