@@ -27,7 +27,7 @@ public class User extends AuditEntity<User> implements AuthUser {
   private String nickName;
 
   /** 手机号码 */
-  @LogField(text = "工作人员名")
+  @LogField(text = "手机号码")
   private String phone;
 
   /** 密码 */

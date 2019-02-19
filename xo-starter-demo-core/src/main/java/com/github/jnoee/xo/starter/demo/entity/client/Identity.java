@@ -17,8 +17,8 @@ import java.util.List;
  * 角色身份。
  */
 @Entity
-@Table(name = "Role")
-@Cache(region = "role", usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Table(name = "Identity")
+@Cache(region = "identity", usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Getter
 @Setter
 public class Identity extends AuditEntity<Worker> {
