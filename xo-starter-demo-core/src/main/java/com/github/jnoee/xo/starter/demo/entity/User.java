@@ -1,28 +1,18 @@
 package com.github.jnoee.xo.starter.demo.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Type;
-
 import com.github.jnoee.xo.auth.server.AuthUser;
 import com.github.jnoee.xo.jpa.audit.annotation.LogField;
 import com.github.jnoee.xo.jpa.audit.entity.AuditEntity;
 import com.github.jnoee.xo.starter.demo.enums.EnabledStatus;
-
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 用户。
@@ -57,7 +47,7 @@ public class User extends AuditEntity<User> implements AuthUser {
   @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "defaultActorId")
   private Actor defaultActor;
-  
+
   /** 用户职务 */
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE,
       orphanRemoval = true)
