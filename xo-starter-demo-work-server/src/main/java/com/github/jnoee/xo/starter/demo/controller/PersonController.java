@@ -1,7 +1,7 @@
 package com.github.jnoee.xo.starter.demo.controller;
 
 import com.github.jnoee.xo.starter.demo.dto.PwdChangeDto;
-import com.github.jnoee.xo.starter.demo.service.UserService;
+import com.github.jnoee.xo.starter.demo.service.WorkerService;
 import com.github.jnoee.xo.starter.demo.vo.ActorVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -21,19 +21,19 @@ import java.util.List;
 @RequiresAuthentication
 public class PersonController {
   @Autowired
-  private UserService userService;
+  private WorkerService workerService;
 
   @ApiOperation(value = "修改密码")
   @PatchMapping("change-pwd")
   @RequiresAuthentication
   public void changePwd(@RequestBody @Valid PwdChangeDto dto) {
-    userService.changePassword(dto.getOldPwd(), dto.getNewPwd());
+    workerService.changePassword(dto.getOldPwd(), dto.getNewPwd());
   }
 
   @ApiOperation(value = "获取职务列表")
   @GetMapping("actors")
   public List<ActorVo> listActors() {
-    return ActorVo.forList(userService.getLogonUser());
+    return ActorVo.forList(workerService.getLogonUser());
   }
 
   @ApiOperation(value = "切换职务", responseContainer = "List")
@@ -41,7 +41,7 @@ public class PersonController {
   @PatchMapping("actor-switch")
   @RequiresAuthentication
   public List<String> changeActor(@RequestParam(required = true) @NotBlank String actorId) {
-    userService.changeActor(actorId);
-    return userService.getLogonUser().getDefaultActor().getRole().getPrivilegs();
+    workerService.changeActor(actorId);
+    return workerService.getLogonUser().getDefaultActor().getRole().getPrivilegs();
   }
 }

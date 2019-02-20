@@ -24,7 +24,7 @@
         <el-table-column
           prop="operator"
           width="150"
-          label="操作用户"
+          label="操作工作人员"
           >
         </el-table-column>
         <el-table-column
@@ -75,7 +75,7 @@
         <div class="log-dialog-con">
           <ul class="log-dialog-con-header clearfix">
             <li>操作时间：<span>{{logDetails.operateTime}}</span></li>
-            <li>操作用户：<span>{{logDetails.operator}}</span></li>
+            <li>操作工作人员：<span>{{logDetails.operator}}</span></li>
             <li>操作内容：<span>{{logDetails.message}}</span></li>
           </ul>
           <div class="log-dialog-con-body">

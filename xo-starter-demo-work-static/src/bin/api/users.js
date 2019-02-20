@@ -1,7 +1,7 @@
 import request from '@/bin/utils/request'
 
 
-// 查询用户列表
+// 查询工作人员列表
 export function getUserList( {pageNum, pageSize, orderBy, sort, keyword} = data ) {
   return request({
       url: '/users?pageNum='+ pageNum + '&pageSize='+ pageSize + '&orderBy='+ orderBy +'&sort='+ sort +'&keyword='+ keyword,
@@ -9,7 +9,7 @@ export function getUserList( {pageNum, pageSize, orderBy, sort, keyword} = data 
   })
 }
 
-// 新增用户
+// 新增工作人员
 export function addUser( {actorName, name, organId, roleId, username, ordinal} = data ) {
     return request({
         url: '/users',
@@ -25,7 +25,7 @@ export function addUser( {actorName, name, organId, roleId, username, ordinal} =
     })
 }
 
-// 更新用户
+// 更新工作人员
 export function updateUser( {id, name, ordinal, username} = data ) {
     return request({
         url: '/users',
@@ -39,7 +39,7 @@ export function updateUser( {id, name, ordinal, username} = data ) {
     })
 }
 
-// 停用用户
+// 停用工作人员
 export function disableUser(id) {
     return request({
         url: '/users/disable/' + id,
@@ -47,7 +47,7 @@ export function disableUser(id) {
     })
 }
 
-// 启用用户
+// 启用工作人员
 export function enableUser(id) {
     return request({
         url: '/users/enable/' + id,
@@ -63,7 +63,7 @@ export function resetPwd( {id, managePassword} = data ) {
     })
 }
 
-// 获取用户信息
+// 获取工作人员信息
 export function getUserInfo(id) {
     return request({
         url: '/users/' + id,

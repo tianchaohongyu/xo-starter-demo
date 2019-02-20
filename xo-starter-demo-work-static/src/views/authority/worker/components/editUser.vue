@@ -1,7 +1,7 @@
 <template>
     <div class="edit-user all-dialog" v-if="editUserVisible">
       <el-dialog
-        title="编辑用户"
+        title="编辑工作人员"
         :visible.sync="editUserVisible"
         :close-on-click-modal=false
         width="35%"
@@ -10,8 +10,8 @@
           <el-form :model="editUser" :rules="rules" label-position="left" ref="editUser" label-width="100px" class="ruleForm user-form clearfix">
             <div class="user-info clearfix">
                 <div class="left user-info-option">
-                  <el-form-item label="用户名：" prop="username">
-                    <el-input v-model="editUser.username" size="small" placeholder="请输入用户名"></el-input>
+                  <el-form-item label="工作人员名：" prop="username">
+                    <el-input v-model="editUser.username" size="small" placeholder="请输入工作人员名"></el-input>
                   </el-form-item>
                 </div>
                 <div class="left user-info-option">
@@ -46,7 +46,7 @@
       editUserVisible: false,
       rules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { required: true, message: '请输入工作人员名', trigger: 'blur' },
         ],
         name: [
           { required: true, message: '请输入姓名', trigger: 'blur' },

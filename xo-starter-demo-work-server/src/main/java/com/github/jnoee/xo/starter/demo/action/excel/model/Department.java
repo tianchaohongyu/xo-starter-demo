@@ -1,9 +1,9 @@
 package com.github.jnoee.xo.starter.demo.action.excel.model;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import lombok.Data;
 
 /**
  * 部门。

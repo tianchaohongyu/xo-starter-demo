@@ -1,6 +1,6 @@
 <template>
   <div class="add-user all-dialog" v-if="dialogVisible">
-    <el-dialog title="新增用户" :visible.sync="dialogVisible" :close-on-click-modal="false" width="650px">
+    <el-dialog title="新增工作人员" :visible.sync="dialogVisible" :close-on-click-modal="false" width="650px">
       <div class="add-user-dialog-con">
         <el-form
           :model="addUser"
@@ -10,10 +10,10 @@
           class="ruleForm user-form clearfix"
         >
           <div class="user-info clearfix">
-            <h4>用户信息</h4>
+            <h4>工作人员信息</h4>
             <div class="left user-info-option">
-              <el-form-item label="用户名：" prop="username">
-                <el-input v-model="addUser.username" size="small" placeholder="请输入用户名"></el-input>
+              <el-form-item label="工作人员名：" prop="username">
+                <el-input v-model="addUser.username" size="small" placeholder="请输入工作人员名"></el-input>
               </el-form-item>
             </div>
             <div class="left user-info-option">
@@ -101,7 +101,7 @@
       // 输入框验证
       rules: {
         username: [
-          { required: true, message: "请输入用户名", trigger: "blur" }
+          { required: true, message: "请输入工作人员名", trigger: "blur" }
         ],
         name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
         ordinal: [

@@ -5,7 +5,7 @@ import com.github.jnoee.xo.model.PageQuery;
 import com.github.jnoee.xo.starter.demo.dto.UserAddDto;
 import com.github.jnoee.xo.starter.demo.dto.UserEditDto;
 import com.github.jnoee.xo.starter.demo.entity.work.Worker;
-import com.github.jnoee.xo.starter.demo.service.UserService;
+import com.github.jnoee.xo.starter.demo.service.WorkerService;
 import com.github.jnoee.xo.starter.demo.vo.UserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,53 +17,53 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(path = "/users", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(path = "/workers", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Api(tags = "工作人员")
 @RequiresPermissions("user:manage")
-public class UserController {
+public class WorkerController {
   @Autowired
-  private UserService userService;
+  private WorkerService workerService;
 
   @ApiOperation(value = "查询工作人员列表")
   @GetMapping
   public Page<UserVo> list(@Valid PageQuery query) {
-    return UserVo.forPage(userService.search(query));
+    return UserVo.forPage(workerService.search(query));
   }
 
   @ApiOperation(value = "获取工作人员信息")
   @GetMapping("{id}")
   public UserVo get(@PathVariable String id) {
-    return UserVo.forView(userService.get(id));
+    return UserVo.forView(workerService.get(id));
   }
 
   @ApiOperation(value = "新增工作人员")
   @PostMapping
   public void create(@RequestBody @Valid UserAddDto dto) {
-    userService.create(dto.toUser());
+    workerService.create(dto.toUser());
   }
 
   @ApiOperation(value = "更新工作人员")
   @PutMapping
   public void update(@RequestBody @Valid UserEditDto dto) {
-    userService.update(dto.toUser());
+    workerService.update(dto.toUser());
   }
 
   @ApiOperation(value = "停用工作人员")
   @PatchMapping("disable/{id}")
   public void disable(@PathVariable(value = "id") Worker user) {
-    userService.disable(user);
+    workerService.disable(user);
   }
 
   @ApiOperation(value = "启用工作人员")
   @PatchMapping("enable/{id}")
   public void enable(@PathVariable(value = "id") Worker user) {
-    userService.enable(user);
+    workerService.enable(user);
   }
 
   @ApiOperation(value = "重置密码")
   @PatchMapping("reset/{id}")
   public void reset(@PathVariable(value = "id") Worker user,
       @RequestParam(required = true) String managePassword) {
-    userService.resetPassword(managePassword, user);
+    workerService.resetPassword(managePassword, user);
   }
 }

@@ -6,7 +6,7 @@ import {asyncRouterMap, constantRouterMap} from '@/router'
   
 
 /**
- * 通过 meta.privilegs 判断是否与当前用户权限匹配
+ * 通过 meta.privilegs 判断是否与当前工作人员权限匹配
  * @param privilegs
  * @param route
  */
@@ -20,7 +20,7 @@ function hasPermission(privilegs, route) {
 
 
 /**
- * 递归过滤异步路由表，返回符合用户所有权限的路由表
+ * 递归过滤异步路由表，返回符合工作人员所有权限的路由表
  * @param routes
  * @param privilegs
  */

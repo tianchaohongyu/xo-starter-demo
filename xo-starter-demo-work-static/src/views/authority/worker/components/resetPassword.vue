@@ -17,10 +17,10 @@
           class="ruleForm user-form clearfix"
         >
           <p>
-            <el-form-item style="margin-bottom: 5px" label="待重置的用户名：">{{resetUserName}}</el-form-item>
+            <el-form-item style="margin-bottom: 5px" label="待重置的工作人员名：">{{resetUserName}}</el-form-item>
           </p>
           <p>
-            <el-form-item style="margin-bottom: 5px" label="待重置用户姓名：">{{resetName}}</el-form-item>
+            <el-form-item style="margin-bottom: 5px" label="待重置工作人员姓名：">{{resetName}}</el-form-item>
           </p>
           <p>
             <el-form-item style="margin-bottom: 5px" label="管理员密码：" prop="managePassword">
@@ -35,7 +35,7 @@
         </el-form>
         <div class="line"></div>
         <p class="tips">
-          请输入管理员密码并点击确定，用户的密码将被重置为：
+          请输入管理员密码并点击确定，工作人员的密码将被重置为：
           <span>666666</span>。
         </p>
       </div>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 @Component("com.github.jnoee.xo.starter.demo.config.CacheSettings")
 public class CacheSettings extends AbstractCacheSettings {
   public CacheSettings() {
-    addRegion("organ", "role", "worker", "actor", "user", "identity");
+    addRegion("organ", "role", "worker", "actor", "visitor");
+    addRegion("user", "identity");
   }
 }

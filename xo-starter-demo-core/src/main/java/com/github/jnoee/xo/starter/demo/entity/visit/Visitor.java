@@ -1,26 +1,28 @@
-package com.github.jnoee.xo.starter.demo.entity.client;
+package com.github.jnoee.xo.starter.demo.entity.visit;
 
 import com.github.jnoee.xo.auth.server.AuthUser;
 import com.github.jnoee.xo.jpa.audit.annotation.LogField;
-import com.github.jnoee.xo.jpa.audit.entity.AuditEntity;
+import com.github.jnoee.xo.starter.demo.entity.base.PeriodUuidEntity;
 import com.github.jnoee.xo.starter.demo.enums.EnabledStatus;
+import com.github.jnoee.xo.starter.demo.enums.VisitorType;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
- * 工作人员。
+ * 访客。
  */
 @Entity
-@Table(name = "User")
-@Cache(region = "user", usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Table(name = "Visitor")
+@Cache(region = "visitor", usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Getter
 @Setter
-public class User extends AuditEntity<User> implements AuthUser {
+public class Visitor extends PeriodUuidEntity implements AuthUser {
 
   /** 昵称 */
   @LogField(text = "昵称")
@@ -33,10 +35,9 @@ public class User extends AuditEntity<User> implements AuthUser {
   /** 密码 */
   private String password;
 
-  /** 关联身份 */
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "identityId")
-  private Identity identity;
+  /** 关联身份类型 */
+  @Type(type = "IEnum")
+  private VisitorType type;
 
   /** 启用状态 */
   @LogField(text = "启用状态")

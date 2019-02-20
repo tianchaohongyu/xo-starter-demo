@@ -45,7 +45,7 @@ service.interceptors.response.use(
 
     // 401 错误
     if (error.response.status === 401) {
-      // 登录时用户名或密码错误，不刷新浏览器
+      // 登录时工作人员名或密码错误，不刷新浏览器
       if(error.response.data.code === 'E980') {
         Message({
           message: error.response.data.msg,

@@ -5,7 +5,7 @@ import com.github.jnoee.xo.starter.demo.dto.OrganAddDto;
 import com.github.jnoee.xo.starter.demo.dto.OrganEditDto;
 import com.github.jnoee.xo.starter.demo.entity.work.Organ;
 import com.github.jnoee.xo.starter.demo.service.OrganService;
-import com.github.jnoee.xo.starter.demo.service.UserService;
+import com.github.jnoee.xo.starter.demo.service.WorkerService;
 import com.github.jnoee.xo.starter.demo.vo.OrganVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,12 +25,12 @@ public class OrganController {
   @Autowired
   private OrganService organService;
   @Autowired
-  private UserService userService;
+  private WorkerService workerService;
 
   @ApiOperation(value = "获取机构树信息")
   @GetMapping
   public OrganVo tree() {
-    return OrganVo.forTree(userService.getCurrentOrgan());
+    return OrganVo.forTree(workerService.getCurrentOrgan());
   }
 
   @ApiOperation(value = "获取机构信息")

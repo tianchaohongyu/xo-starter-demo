@@ -19,7 +19,7 @@
         style="width: 100%">
         <el-table-column
           prop="username"
-          label="用户名"
+          label="工作人员名"
           width="100">
         </el-table-column>
         <el-table-column
@@ -92,9 +92,9 @@
       </div>
     </div>
 
-    <!-- 新增用户 -->
+    <!-- 新增工作人员 -->
     <add-user ref='addDialog'  @refreshAddList='initData'/>
-    <!-- 编辑用户 -->
+    <!-- 编辑工作人员 -->
     <edit-user ref='editDialog' @refreshList='initData'/>
     <!-- 重置密码 -->
     <reset-password ref='resetDialog'/>
@@ -174,14 +174,14 @@
     // 停用
     blockUp(id) {
       disableUser(id).then(res => {
-        this.$confirm('您确定要停用该用户吗？', '提示', {
+        this.$confirm('您确定要停用该工作人员吗？', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
           this.$message({
             type: 'success',
-            message: '停用用户成功!',
+            message: '停用工作人员成功!',
             center: true
           });
           this.initData();
@@ -196,14 +196,14 @@
     // 启用
     startUp(id) {
       enableUser(id).then(res => {
-        this.$confirm('您确定要启用该用户吗？', '提示', {
+        this.$confirm('您确定要启用该工作人员吗？', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
           this.$message({
             type: 'success',
-            message: '启用用户成功!',
+            message: '启用工作人员成功!',
             center: true
           });
           this.initData();

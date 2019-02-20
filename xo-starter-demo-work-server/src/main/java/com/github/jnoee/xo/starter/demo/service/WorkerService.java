@@ -35,7 +35,7 @@ import javax.annotation.Resource;
  */
 @Service
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class UserService implements AuthUserService<Worker> {
+public class WorkerService implements AuthUserService<Worker> {
   @Resource
   private Dao<Worker> workerDao;
   @Resource
@@ -46,7 +46,7 @@ public class UserService implements AuthUserService<Worker> {
   private MessageSource messageSource;
 
   @Override
-  @SimpleLog(code = "l.user.logon", vars = "username")
+  @SimpleLog(code = "l.worker.logon", vars = "username")
   public void login(String username, String password) {
     AuthenticationToken token = new UsernamePasswordToken(username, password);
     Subject subject = SecurityUtils.getSubject();
@@ -80,16 +80,16 @@ public class UserService implements AuthUserService<Worker> {
   public Worker get(String id) {
     Worker user = workerDao.get(id);
     if (user == null) {
-      messageSource.thrown("e.user.get.not-exist", id);
+      messageSource.thrown("e.worker.get.not-exist", id);
     }
     return user;
   }
 
   @Transactional
-  @SimpleLog(code = "l.user.add", vars = "user.name")
+  @SimpleLog(code = "l.worker.add", vars = "user.name")
   public void create(Worker user) {
     if (!workerDao.isUnique(user, "username")) {
-      messageSource.thrown("e.user.add.exist", user.getUsername());
+      messageSource.thrown("e.worker.add.exist", user.getUsername());
     }
     if (StringUtils.isEmpty(user.getPassword())) {
       user.setPassword(authHelper.encodePassword(AdminIds.NEW_SALT));
@@ -102,29 +102,29 @@ public class UserService implements AuthUserService<Worker> {
   }
 
   @Transactional
-  @DetailLog(target = "user", code = "l.user.edit", vars = "user.name", type = LogType.ALL)
+  @DetailLog(target = "user", code = "l.worker.edit", vars = "user.name", type = LogType.ALL)
   public void update(Worker user) {
     if (!workerDao.isUnique(user, "username")) {
-      messageSource.thrown("e.user.add.exist", user.getUsername());
+      messageSource.thrown("e.worker.add.exist", user.getUsername());
     }
     Worker origUser = get(user.getId());
     BeanUtils.copyFields(user, origUser, "enabled");
   }
 
   @Transactional
-  @DetailLog(target = "user", code = "l.user.delete", vars = "user.name", type = LogType.ORIG)
+  @DetailLog(target = "user", code = "l.worker.delete", vars = "user.name", type = LogType.ORIG)
   public void delete(Worker user) {
     workerDao.remove(user);
   }
 
   @Transactional
-  @SimpleLog(code = "l.user.enable", vars = "user.name")
+  @SimpleLog(code = "l.worker.enable", vars = "user.name")
   public void enable(Worker user) {
     user.setStatus(EnabledStatus.ENABLED);
   }
 
   @Transactional
-  @SimpleLog(code = "l.user.disable", vars = "user.name")
+  @SimpleLog(code = "l.worker.disable", vars = "user.name")
   public void disable(Worker user) {
     user.setStatus(EnabledStatus.DISABLED);
   }
@@ -136,10 +136,10 @@ public class UserService implements AuthUserService<Worker> {
    * @param user 重置工作人员
    */
   @Transactional
-  @SimpleLog(code = "l.user.reset-pwd", vars = "user.name")
+  @SimpleLog(code = "l.worker.reset-pwd", vars = "user.name")
   public void resetPassword(String managePassword, Worker user) {
     if (!authHelper.verifyPassword(managePassword, getLogonUser().getPassword())) {
-      messageSource.thrown("e.user.reset-pwd.admin-pwd-wrong");
+      messageSource.thrown("e.worker.reset-pwd.admin-pwd-wrong");
     }
     user.setPassword(authHelper.encodePassword(AdminIds.NEW_SALT));
   }

@@ -1,12 +1,11 @@
 package com.github.jnoee.xo.starter.demo.action.excel.model;
 
+import com.github.jnoee.xo.utils.DateUtils;
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import com.github.jnoee.xo.utils.DateUtils;
-
-import lombok.Data;
 
 /**
  * 职员。

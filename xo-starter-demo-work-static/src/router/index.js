@@ -77,10 +77,10 @@ export const asyncRouterMap = [
         meta: { title: '角色管理', icon: 'tree', privilegs: ['role'] },
       },
       {
-        path: 'user',
-        name: 'Users',
-        component: () => import('@/views/authority/user/index'),
-        meta: { title: '用户管理', icon: 'user', privilegs: ['user'] },
+        path: 'worker',
+        name: 'Workers',
+        component: () => import('@/views/authority/worker/index'),
+        meta: { title: '工作人员管理', icon: 'user', privilegs: ['user'] },
       }
     ]
   },

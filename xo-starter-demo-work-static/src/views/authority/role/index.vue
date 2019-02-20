@@ -46,7 +46,7 @@
                     </p>
                   </li>
                   <li>
-                    <p>用户：</p>
+                    <p>工作人员：</p>
                     <p>
                       <el-checkbox v-model="checkList.user">管理</el-checkbox>
                     </p>
@@ -109,7 +109,7 @@
                 </p>
               </li>
               <li>
-                <p>用户：</p>
+                <p>工作人员：</p>
                 <p>
                   <el-checkbox v-model="permissionList.user">管理</el-checkbox>
                 </p>
@@ -179,7 +179,7 @@
         cache: false
       },
 
-      // 新增用户权限
+      // 新增工作人员权限
       permissionList: {
         organ: false,
         role: false,
@@ -257,7 +257,7 @@
       });
     },
 
-    // 新增用户
+    // 新增工作人员
     addNewRole(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {

@@ -1,21 +1,15 @@
 package com.github.jnoee.xo.starter.demo.action.word.model;
 
+import com.deepoove.poi.config.Name;
+import com.deepoove.poi.data.*;
+import com.deepoove.poi.util.BytePictureUtils;
+import com.github.jnoee.xo.exception.SysException;
+import lombok.Data;
+import org.springframework.core.io.ClassPathResource;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.core.io.ClassPathResource;
-
-import com.deepoove.poi.config.Name;
-import com.deepoove.poi.data.MiniTableRenderData;
-import com.deepoove.poi.data.NumbericRenderData;
-import com.deepoove.poi.data.PictureRenderData;
-import com.deepoove.poi.data.RowRenderData;
-import com.deepoove.poi.data.TextRenderData;
-import com.deepoove.poi.util.BytePictureUtils;
-import com.github.jnoee.xo.exception.SysException;
-
-import lombok.Data;
 
 @Data
 public class Software {

@@ -69,7 +69,7 @@
     }
   },
   mounted() {
-    // 获取用户信息
+    // 获取工作人员信息
     this.defaultInfo = JSON.parse(getCookies('userInfo'))
 
     // 获取职务列表
