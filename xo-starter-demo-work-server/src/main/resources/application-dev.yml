@@ -19,6 +19,13 @@ spring:
           default:
             elasticsearch:
               host: http://localhost:9200
+xo:
+  api:
+    doc:
+      title: 工作人员后台管理服务
+      description: 工作人员后台管理服务接口
+      version: 1.0
+      base-package: com.github.jnoee.xo.starter.demo.work.controller
 logging:
   level:
     com:

@@ -12,8 +12,8 @@
           <div class="user-info clearfix">
             <h4>工作人员信息</h4>
             <div class="left user-info-option">
-              <el-form-item label="工作人员名：" prop="username">
-                <el-input v-model="addUser.username" size="small" placeholder="请输入工作人员名"></el-input>
+              <el-form-item label="用户名：" prop="username">
+                <el-input v-model="addUser.username" size="small" placeholder="请输入用户名"></el-input>
               </el-form-item>
             </div>
             <div class="left user-info-option">
