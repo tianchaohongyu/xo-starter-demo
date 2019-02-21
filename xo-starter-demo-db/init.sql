@@ -94,7 +94,7 @@ create table BizLog
 /*==============================================================*/
 /* Table: visit_visitor                                         */
 /*==============================================================*/
-create table visit_visitor
+create table visit_worker
 (
    id                   char(36) not null,
    identityId             char(36) not null,
