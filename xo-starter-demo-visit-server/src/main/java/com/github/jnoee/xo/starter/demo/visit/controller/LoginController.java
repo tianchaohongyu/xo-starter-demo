@@ -29,7 +29,7 @@ public class LoginController {
           notes = "登录成功后，Header中包含x-auth-token令牌。客户端保存token，并在后续访问的Header中包含该x-auth-token。")
   @PostMapping(path = "login")
   public LoginVo login(@RequestBody @Valid LoginDto dto) {
-    visitorService.login(dto.getUsername(), dto.getPassword());
+    visitorService.login(dto.getPhone(), dto.getPassword());
     Visitor user = visitorService.getLogonUser();
     List<String> privilegs = visitorService.getAuthToken().getPrivilegs();
     return new LoginVo(user, privilegs);

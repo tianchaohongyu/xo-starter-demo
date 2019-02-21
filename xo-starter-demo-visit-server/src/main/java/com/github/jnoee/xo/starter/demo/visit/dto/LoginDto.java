@@ -8,9 +8,9 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class LoginDto {
   @NotBlank
-  @ApiModelProperty(value = "工作人员名", required = true, example = "admin")
-  private String username;
+  @ApiModelProperty(value = "手机", required = true, example = "13800138000")
+  private String phone;
   @NotBlank
-  @ApiModelProperty(value = "密码", required = true, example = "admin")
+  @ApiModelProperty(value = "密码", required = true, example = "666666")
   private String password;
 }

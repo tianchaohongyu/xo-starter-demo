@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 
 /**
- * 工作人员管理。
+ * 普通用户管理。
  */
 @Service
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
@@ -40,15 +40,15 @@ public class VisitorService implements AuthUserService<Visitor> {
 
   @Override
   @SimpleLog(code = "l.worker.logon", vars = "username")
-  public void login(String username, String password) {
-    AuthenticationToken token = new UsernamePasswordToken(username, password);
+  public void login(String phone, String password) {
+    AuthenticationToken token = new UsernamePasswordToken(phone, password);
     Subject subject = SecurityUtils.getSubject();
     subject.login(token);
   }
 
   @Override
   public Visitor getByUsername(String username) {
-    return visitorDao.findUnique("username", username);
+    return visitorDao.findUnique("phone", username);
   }
 
   @Override
@@ -56,7 +56,7 @@ public class VisitorService implements AuthUserService<Visitor> {
     Visitor user = getByUsername(username);
     AuthToken token = new AuthToken();
     token.setUsername(username);
-    token.setPrivilegs(user.getType().getPrivilegs());
+    token.setPrivilegs(user.getIdentity().getPrivilegs());
     return token;
   }
 
@@ -84,7 +84,7 @@ public class VisitorService implements AuthUserService<Visitor> {
   @Transactional
   @DetailLog(target = "user", code = "l.worker.edit", vars = "user.name", type = LogType.ALL)
   public void update(Visitor user) {
-    if (!visitorDao.isUnique(user, "username")) {
+    if (!visitorDao.isUnique(user, "phone")) {
       messageSource.thrown("e.worker.add.exist", user.getUsername());
     }
     Visitor origUser = get(user.getId());

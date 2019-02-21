@@ -15,7 +15,7 @@ public class LoginVo {
   private String name;
   @ApiModelProperty(value = "角色名称")
   private String roleName;
-  @ApiModelProperty(value = "权限列表")
+  @ApiModelProperty(value = "权限列表", example = "[]")
   private List<String> privilegs = new ArrayList<>();
 
   public LoginVo(Visitor user, List<String> privilegs) {

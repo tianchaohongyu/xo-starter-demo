@@ -5,9 +5,9 @@
 
 
 /*==============================================================*/
-/* Table: Organ                                                 */
+/* Table: work_organ                                                 */
 /*==============================================================*/
-create table Organ
+create table work_organ
 (
    id                   char(36) not null,
    parentId             char(36),
@@ -20,13 +20,13 @@ create table Organ
    updateTime           datetime not null,
    primary key (id),
    constraint FK_Organ_parentId foreign key (parentId)
-      references Organ (id) on delete cascade on update restrict
+      references work_organ (id) on delete cascade on update restrict
 );
 
 /*==============================================================*/
 /* Table: User                                                  */
 /*==============================================================*/
-create table Worker
+create table work_worker
 (
    id                   char(36) not null,
    name                 varchar(20) not null,
@@ -43,9 +43,9 @@ create table Worker
 );
 
 /*==============================================================*/
-/* Table: Role                                                  */
+/* Table: work_role                                                  */
 /*==============================================================*/
-create table Role
+create table work_role
 (
    id                   char(36) not null,
    name                 varchar(60) not null,
@@ -60,7 +60,7 @@ create table Role
 /*==============================================================*/
 /* Table: Actor                                                 */
 /*==============================================================*/
-create table Actor
+create table work_actor
 (
    id                   char(36) not null,
    organId              char(36) not null,
@@ -69,11 +69,11 @@ create table Actor
    name                 varchar(60) not null,
    primary key (id),
    constraint FK_Actor_organId foreign key (organId)
-      references Organ (id) on delete cascade on update restrict,
+      references work_organ (id) on delete cascade on update restrict,
    constraint FK_Actor_userId foreign key (userId)
-      references User (id) on delete cascade on update restrict,
+      references work_worker (id) on delete cascade on update restrict,
    constraint FK_Actor_roleId foreign key (roleId)
-      references Role (id) on delete cascade on update restrict
+      references work_role (id) on delete cascade on update restrict
 );
 
 /*==============================================================*/
@@ -92,10 +92,59 @@ create table BizLog
 );
 
 /*==============================================================*/
+/* Table: visit_visitor                                         */
+/*==============================================================*/
+create table visit_visitor
+(
+   id                   char(36) not null,
+   identityId             char(36) not null,
+   nickName             varchar(20) not null,
+   phone             varchar(20) not null,
+   password             varchar(120) not null,
+   status             varchar(3) not null,
+   createTime          datetime not null,
+   updateTime          datetime not null,
+   primary key (id)
+);
+
+/*==============================================================*/
+/* Table: visit_identity                                        */
+/*==============================================================*/
+create table visit_identity
+(
+   id                   char(36) not null,
+   name             varchar(20) not null,
+   code             varchar(20) not null,
+   type             varchar(3) not null,
+   createUserId         char(36) not null,
+   createTime           datetime not null,
+   updateUserId         char(36) not null,
+   updateTime           datetime not null,
+   primary key (id)
+);
+
+/*==============================================================*/
 /* Index: IDX_User_username                                     */
 /*==============================================================*/
-create unique index IDX_User_username on User
+create unique index IDX_User_username on work_worker
 (
    username
+);
+
+
+/*==============================================================*/
+/* Index: IDX_Worker_phone                                      */
+/*==============================================================*/
+create unique index IDX_Worker_phone on visit_worker
+(
+   phone
+);
+
+
+/*==============================================================*/
+/* Index: IDX_Identity_code                                     */
+/*==============================================================*/
+create unique index IDX_Identity_code on visit_identity(
+   code
 );
 

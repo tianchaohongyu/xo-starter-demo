@@ -12,8 +12,8 @@ import javax.persistence.*;
  * 职务。
  */
 @Entity
-@Table(name = "Actor")
-@Cache(region = "actor", usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Table(name = "work_actor")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Getter
 @Setter
 public class Actor extends UuidEntity {

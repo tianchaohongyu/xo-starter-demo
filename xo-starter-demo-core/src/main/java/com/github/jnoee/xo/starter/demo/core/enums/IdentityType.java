@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 访客身份类型。
  */
-public enum VisitorType implements IEnum {
+public enum IdentityType implements IEnum {
 
   /** 普通用户 */
   DEFAULT("普通用户", "0", "default:default"),
@@ -31,7 +31,7 @@ public enum VisitorType implements IEnum {
    * @param text  文本
    * @param value 值
    */
-  private VisitorType(String text, String value, String... privilegs) {
+  private IdentityType(String text, String value, String... privilegs) {
     this.text = text;
     this.value = value;
     this.privilegs = Arrays.asList(privilegs);

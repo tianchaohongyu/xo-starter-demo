@@ -17,8 +17,8 @@ import java.util.List;
  * 机构。
  */
 @Entity
-@Table(name = "Organ")
-@Cache(region = "organ", usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Table(name = "work_organ")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Getter
 @Setter
 public class Organ extends AuditEntity<Worker> {

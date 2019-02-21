@@ -18,8 +18,8 @@ import java.util.List;
  * 工作人员。
  */
 @Entity
-@Table(name = "Worker")
-@Cache(region = "worker", usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Table(name = "work_worker")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Getter
 @Setter
 public class Worker extends AuditEntity<Worker> implements AuthUser {

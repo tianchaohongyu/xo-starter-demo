@@ -4,28 +4,28 @@ import com.github.jnoee.xo.auth.server.AuthUser;
 import com.github.jnoee.xo.jpa.audit.annotation.LogField;
 import com.github.jnoee.xo.starter.demo.core.entity.base.PeriodUuidEntity;
 import com.github.jnoee.xo.starter.demo.core.enums.EnabledStatus;
-import com.github.jnoee.xo.starter.demo.core.enums.VisitorType;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * 访客。
  */
 @Entity
-@Table(name = "Visitor")
-@Cache(region = "visitor", usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@Table(name = "visit_visitor")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Getter
 @Setter
 public class Visitor extends PeriodUuidEntity implements AuthUser {
 
   /** 昵称 */
   @LogField(text = "昵称")
+  @Length(message = "昵称长度应该为1~20字符", min = 1, max = 20)
   private String nickName;
 
   /** 手机号码 */
@@ -35,9 +35,10 @@ public class Visitor extends PeriodUuidEntity implements AuthUser {
   /** 密码 */
   private String password;
 
-  /** 关联身份类型 */
-  @Type(type = "IEnum")
-  private VisitorType type = VisitorType.DEFAULT;
+  /** 身份 */
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "identityId")
+  private Identity identity;
 
   /** 启用状态 */
   @LogField(text = "启用状态")
@@ -46,7 +47,7 @@ public class Visitor extends PeriodUuidEntity implements AuthUser {
 
   @Override
   public String getUsername() {
-    return id;
+    return phone;
   }
 
   @Override
