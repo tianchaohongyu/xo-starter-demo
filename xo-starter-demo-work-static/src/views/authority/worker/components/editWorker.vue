@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import {updateUser} from '@/bin/api/users'
+  import {updateWorker} from '@/bin/api/workers'
   import {checkOrdinal} from '@/bin/utils/validate'
 
   export default {
@@ -78,7 +78,7 @@
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          updateUser(this.editWorker).then(res => {
+          updateWorker(this.editWorker).then(res => {
             this.$message({
               type: "success",
               message: "保存成功!",

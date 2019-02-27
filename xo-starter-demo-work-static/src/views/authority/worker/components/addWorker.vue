@@ -76,7 +76,7 @@
 <script>
   import {getOrgansTree} from "@/bin/api/organ";
   import {getRoleList} from "@/bin/api/roles";
-  import {addWorker} from "@/bin/api/users";
+  import {addWorker} from "@/bin/api/workers";
   import {getParentOrganList} from "@/bin/utils/index";
   import {checkOrdinal} from '@/bin/utils/validate'
 

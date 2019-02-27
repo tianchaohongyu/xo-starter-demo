@@ -80,7 +80,7 @@
 <script>
   import {getOrgansTree} from "@/bin/api/organ";
   import {getRoleList} from "@/bin/api/roles";
-  import {addActor, delActor, getActorList, setDefaultActor, updateActor} from "@/bin/api/users";
+  import {addActor, delActor, getActorList, setDefaultActor, updateActor} from "@/bin/api/workers";
   import {getParentOrganList} from "@/bin/utils/index";
 
   export default {

@@ -26,7 +26,7 @@ export function addWorker({actorName, name, organId, roleId, username, ordinal} 
 }
 
 // 更新工作人员
-export function updateUser({id, name, ordinal, username} = data) {
+export function updateWorker({id, name, ordinal, username} = data) {
   return request({
     url: '/workers',
     method: 'PUT',
@@ -40,7 +40,7 @@ export function updateUser({id, name, ordinal, username} = data) {
 }
 
 // 停用工作人员
-export function disableUser(id) {
+export function disableWorker(id) {
   return request({
     url: '/workers/disable/' + id,
     method: 'PATCH'
@@ -48,7 +48,7 @@ export function disableUser(id) {
 }
 
 // 启用工作人员
-export function enableUser(id) {
+export function enableWorker(id) {
   return request({
     url: '/workers/enable/' + id,
     method: 'PATCH'
@@ -64,7 +64,7 @@ export function resetPwd({id, managePassword} = data) {
 }
 
 // 获取工作人员信息
-export function getUserInfo(id) {
+export function getWorkerInfo(id) {
   return request({
     url: '/workers/' + id,
     method: 'GET'

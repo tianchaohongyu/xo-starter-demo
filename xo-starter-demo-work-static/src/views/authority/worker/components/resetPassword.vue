@@ -48,7 +48,7 @@
 </template>
 
 <script>
-  import {resetPwd} from "@/bin/api/users";
+  import {resetPwd} from "@/bin/api/workers";
 
   export default {
   name: "resetPassword",

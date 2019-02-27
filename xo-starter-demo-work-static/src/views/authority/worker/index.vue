@@ -48,7 +48,7 @@
           width="170">
         </el-table-column>
         <el-table-column
-          prop="updateUser"
+          prop="updateWorker"
           label="修改人"
           width="130">
         </el-table-column>
@@ -111,13 +111,13 @@
   import {
     addWorker,
     changePwd,
-    disableUser,
-    enableUser,
+    disableWorker,
+    enableWorker,
     getActorList,
-    getUserInfo,
     getUserList,
-    updateUser
-  } from '@/bin/api/users'
+    getWorkerInfo,
+    updateWorker
+  } from '@/bin/api/workers'
   import {changeTime} from '@/bin/utils/index'
 
   export default {
@@ -173,7 +173,7 @@
     },
     // 停用
     blockUp(id) {
-      disableUser(id).then(res => {
+      disableWorker(id).then(res => {
         this.$confirm('您确定要停用该工作人员吗？', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -195,7 +195,7 @@
 
     // 启用
     startUp(id) {
-      enableUser(id).then(res => {
+      enableWorker(id).then(res => {
         this.$confirm('您确定要启用该工作人员吗？', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
