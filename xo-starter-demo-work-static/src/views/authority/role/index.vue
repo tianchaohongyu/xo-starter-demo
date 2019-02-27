@@ -48,7 +48,7 @@
                   <li>
                     <p>工作人员：</p>
                     <p>
-                      <el-checkbox v-model="checkList.user">管理</el-checkbox>
+                      <el-checkbox v-model="checkList.worker">管理</el-checkbox>
                     </p>
                   </li>
                   <li>
@@ -111,7 +111,7 @@
               <li>
                 <p>工作人员：</p>
                 <p>
-                  <el-checkbox v-model="permissionList.user">管理</el-checkbox>
+                  <el-checkbox v-model="permissionList.worker">管理</el-checkbox>
                 </p>
               </li>
               <li>
