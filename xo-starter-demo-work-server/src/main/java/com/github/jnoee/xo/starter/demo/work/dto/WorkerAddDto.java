@@ -6,31 +6,45 @@ import com.github.jnoee.xo.starter.demo.core.entity.work.Role;
 import com.github.jnoee.xo.starter.demo.core.entity.work.Worker;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
-public class UserDto {
-  @NotBlank(message = "工作人员名不能为空")
-  @ApiModelProperty(value = "工作人员名", required = true)
+public class WorkerAddDto {
+  @NotBlank
+  @ApiModelProperty(value = "工作人员名", required = true, example = "test001")
   private String username;
-  @NotBlank(message = "姓名不能为空")
-  @ApiModelProperty(value = "姓名", required = true)
+
+  @NotBlank
+  @ApiModelProperty(value = "姓名", required = true, example = "测试工作人员")
   private String name;
-  @NotBlank(message = "机构ID不能为空")
-  @ApiModelProperty(value = "机构ID", required = true)
+
+  @NotNull
+  @Range(min = 1, max = 999)
+  @ApiModelProperty(value = "序号", required = true, example = "999")
+  private Integer ordinal;
+
+  @NotBlank
+  @ApiModelProperty(value = "机构ID", required = true,
+          example = "ADMINOID-0000-0000-0000-000000000000")
   private String organId;
-  @NotBlank(message = "角色ID不能为空")
-  @ApiModelProperty(value = "角色ID", required = true)
+
+  @NotBlank
+  @ApiModelProperty(value = "角色ID", required = true,
+          example = "ADMINRID-0000-0000-0000-000000000000")
   private String roleId;
-  @NotBlank(message = "职务名称不能为空")
-  @ApiModelProperty(value = "职务名称", required = true)
+
+  @NotBlank
+  @ApiModelProperty(value = "职务名称", required = true, example = "测试组长")
   private String actorName;
 
   public Worker toUser() {
     Worker user = new Worker();
     user.setUsername(username);
     user.setName(name);
+    user.setOrdinal(ordinal);
 
     Organ organ = new Organ();
     organ.setId(organId);

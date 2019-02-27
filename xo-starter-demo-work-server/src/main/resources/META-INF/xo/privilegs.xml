@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <privilegs>
 	<module name="系统管理">
+        <resource code="visitor" name="用户">
+            <operate code="manage" name="管理" />
+        </resource>
+
 		<resource code="organ" name="机构">
 			<operate code="manage" name="管理" />
 		</resource>

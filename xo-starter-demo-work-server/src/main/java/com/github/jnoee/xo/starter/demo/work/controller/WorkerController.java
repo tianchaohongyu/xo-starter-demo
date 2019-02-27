@@ -3,10 +3,10 @@ package com.github.jnoee.xo.starter.demo.work.controller;
 import com.github.jnoee.xo.model.Page;
 import com.github.jnoee.xo.model.PageQuery;
 import com.github.jnoee.xo.starter.demo.core.entity.work.Worker;
-import com.github.jnoee.xo.starter.demo.work.dto.UserAddDto;
-import com.github.jnoee.xo.starter.demo.work.dto.UserEditDto;
+import com.github.jnoee.xo.starter.demo.work.dto.WorkerAddDto;
+import com.github.jnoee.xo.starter.demo.work.dto.WorkerEditDto;
 import com.github.jnoee.xo.starter.demo.work.service.WorkerService;
-import com.github.jnoee.xo.starter.demo.work.vo.UserVo;
+import com.github.jnoee.xo.starter.demo.work.vo.WorkerVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -26,25 +26,25 @@ public class WorkerController {
 
   @ApiOperation(value = "查询工作人员列表")
   @GetMapping
-  public Page<UserVo> list(@Valid PageQuery query) {
-    return UserVo.forPage(workerService.search(query));
+  public Page<WorkerVo> list(@Valid PageQuery query) {
+    return WorkerVo.forPage(workerService.search(query));
   }
 
   @ApiOperation(value = "获取工作人员信息")
   @GetMapping("{id}")
-  public UserVo get(@PathVariable String id) {
-    return UserVo.forView(workerService.get(id));
+  public WorkerVo get(@PathVariable String id) {
+    return WorkerVo.forView(workerService.get(id));
   }
 
   @ApiOperation(value = "新增工作人员")
   @PostMapping
-  public void create(@RequestBody @Valid UserAddDto dto) {
+  public void create(@RequestBody @Valid WorkerAddDto dto) {
     workerService.create(dto.toUser());
   }
 
   @ApiOperation(value = "更新工作人员")
   @PutMapping
-  public void update(@RequestBody @Valid UserEditDto dto) {
+  public void update(@RequestBody @Valid WorkerEditDto dto) {
     workerService.update(dto.toUser());
   }
 
