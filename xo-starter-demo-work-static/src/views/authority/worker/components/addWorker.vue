@@ -1,11 +1,11 @@
 <template>
-  <div class="add-user all-dialog" v-if="dialogVisible">
+  <div class="add-worker all-dialog" v-if="dialogVisible">
     <el-dialog title="新增工作人员" :visible.sync="dialogVisible" :close-on-click-modal="false" width="650px">
-      <div class="add-user-dialog-con">
+      <div class="add-worker-dialog-con">
         <el-form
-          :model="addUser"
+          :model="addWorker"
           :rules="rules"
-          ref="addUser"
+          ref="addWorker"
           label-width="100px"
           class="ruleForm user-form clearfix"
         >
@@ -13,17 +13,17 @@
             <h4>工作人员信息</h4>
             <div class="left user-info-option">
               <el-form-item label="用户名：" prop="username">
-                <el-input v-model="addUser.username" size="small" placeholder="请输入用户名"></el-input>
+                <el-input v-model="addWorker.username" size="small" placeholder="请输入用户名"></el-input>
               </el-form-item>
             </div>
             <div class="left user-info-option">
               <el-form-item label="姓名：" prop="name">
-                <el-input v-model="addUser.name" size="small" placeholder="请输入姓名"></el-input>
+                <el-input v-model="addWorker.name" size="small" placeholder="请输入姓名"></el-input>
               </el-form-item>
             </div>
             <div class="left user-info-option">
               <el-form-item label="序号：" prop="ordinal">
-                <el-input v-model.number="addUser.ordinal" size="small" placeholder="请输入序号"></el-input>
+                <el-input v-model.number="addWorker.ordinal" size="small" placeholder="请输入序号"></el-input>
               </el-form-item>
             </div>
           </div>
@@ -32,7 +32,7 @@
             <h4>默认职务</h4>
             <div class="left user-info-option">
               <el-form-item label="关联机构：">
-                <el-select filterable v-model="addUser.organId" style="width:184px;" size="small" placeholder="请选择">
+                <el-select filterable v-model="addWorker.organId" style="width:184px;" size="small" placeholder="请选择">
                   <el-option
                     v-for="(item, index) in organIdList"
                     :key="index"
@@ -47,7 +47,7 @@
             </div>
             <div class="left user-info-option">
               <el-form-item label="关联角色：">
-                <el-select filterable v-model="addUser.roleId" style="width:184px;" size="small" placeholder="请选择">
+                <el-select filterable v-model="addWorker.roleId" style="width:184px;" size="small" placeholder="请选择">
                   <el-option
                     v-for="(item, index) in roleIdList"
                     :key="index"
@@ -59,15 +59,15 @@
             </div>
             <div class="left user-info-option">
               <el-form-item label="职务名称：" prop="actorName">
-                <el-input v-model="addUser.actorName" size="small" placeholder="请输入职务名称"></el-input>
+                <el-input v-model="addWorker.actorName" size="small" placeholder="请输入职务名称"></el-input>
               </el-form-item>
             </div>
           </div>
         </el-form>
       </div>
       <span slot="footer" class="dialog-footer">
-        <el-button size="small" @click="resetForm('addUser')">取 消</el-button>
-        <el-button size="small" type="primary" @click="submitForm('addUser')">保 存</el-button>
+        <el-button size="small" @click="resetForm('addWorker')">取 消</el-button>
+        <el-button size="small" type="primary" @click="submitForm('addWorker')">保 存</el-button>
       </span>
     </el-dialog>
   </div>
@@ -76,12 +76,12 @@
 <script>
   import {getOrgansTree} from "@/bin/api/organ";
   import {getRoleList} from "@/bin/api/roles";
-  import {addUser} from "@/bin/api/users";
+  import {addWorker} from "@/bin/api/users";
   import {getParentOrganList} from "@/bin/utils/index";
   import {checkOrdinal} from '@/bin/utils/validate'
 
   export default {
-  name: "addUser",
+  name: "addWorker",
   data() {
     return {
       // 窗口显示隐藏
@@ -90,7 +90,7 @@
       roleIdList: [],
       // 传值给后台
 
-      addUser: {
+      addWorker: {
         actorName: "",
         name: "",
         organId: "",
@@ -101,7 +101,7 @@
       // 输入框验证
       rules: {
         username: [
-          { required: true, message: "请输入工作人员名", trigger: "blur" }
+          { required: true, message: "请输入用户名", trigger: "blur" }
         ],
         name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
         ordinal: [
@@ -129,20 +129,20 @@
         this.organIdList = [];
         this.organIdList.push(dataChild);
         this.organIdList = getParentOrganList(this.organIdList);
-        this.addUser.organId = dataFirst;
+        this.addWorker.organId = dataFirst;
       });
       // 获取关联角色
       getRoleList().then(res => {
         let role = res.data;
         let roleId = res.data[0].id;
         this.roleIdList = role;
-        this.addUser.roleId = roleId;
+        this.addWorker.roleId = roleId;
       });
     },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          addUser(this.addUser).then(res => {
+          addWorker(this.addWorker).then(res => {
             this.dialogVisible = false;
             this.$refs[formName].resetFields();
             this.$message({

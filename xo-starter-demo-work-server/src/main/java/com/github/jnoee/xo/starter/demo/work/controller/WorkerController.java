@@ -19,7 +19,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(path = "/workers", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Api(tags = "工作人员")
-@RequiresPermissions("user:manage")
+@RequiresPermissions("worker:manage")
 public class WorkerController {
   @Autowired
   private WorkerService workerService;

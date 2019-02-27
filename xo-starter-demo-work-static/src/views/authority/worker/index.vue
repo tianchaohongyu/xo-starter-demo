@@ -19,7 +19,7 @@
         style="width: 100%">
         <el-table-column
           prop="username"
-          label="工作人员名"
+          label="用户名"
           width="100">
         </el-table-column>
         <el-table-column
@@ -93,9 +93,9 @@
     </div>
 
     <!-- 新增工作人员 -->
-    <add-user ref='addDialog'  @refreshAddList='initData'/>
+    <add-worker ref='addDialog'  @refreshAddList='initData'/>
     <!-- 编辑工作人员 -->
-    <edit-user ref='editDialog' @refreshList='initData'/>
+    <edit-worker ref='editDialog' @refreshList='initData'/>
     <!-- 重置密码 -->
     <reset-password ref='resetDialog'/>
     <!-- 职务管理 -->
@@ -105,11 +105,11 @@
 </template>
 <script>
   import Actor from './components/actor'
-  import AddUser from './components/addUser'
-  import EditUser from './components/editUser'
+  import AddWorker from './components/addWorker'
+  import EditWorker from './components/editWorker'
   import ResetPassword from './components/resetPassword'
   import {
-    addUser,
+    addWorker,
     changePwd,
     disableUser,
     enableUser,
@@ -124,8 +124,8 @@
   name: "Users",
   components:{
     Actor,
-    AddUser,
-    EditUser,
+    AddWorker,
+    EditWorker,
     ResetPassword,
   },
   data() {

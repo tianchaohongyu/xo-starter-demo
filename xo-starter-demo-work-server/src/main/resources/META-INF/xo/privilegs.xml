@@ -7,7 +7,7 @@
 		<resource code="role" name="角色">
 			<operate code="manage" name="管理" />
 		</resource>
-		<resource code="user" name="工作人员">
+		<resource code="worker" name="工作人员">
 			<operate code="manage" name="管理" />
 		</resource>
 		<resource code="log" name="日志">

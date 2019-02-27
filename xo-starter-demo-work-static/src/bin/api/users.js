@@ -10,7 +10,7 @@ export function getUserList({pageNum, pageSize, orderBy, sort, keyword} = data) 
 }
 
 // 新增工作人员
-export function addUser({actorName, name, organId, roleId, username, ordinal} = data) {
+export function addWorker({actorName, name, organId, roleId, username, ordinal} = data) {
   return request({
     url: '/workers',
     method: 'POST',

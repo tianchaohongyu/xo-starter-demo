@@ -17,7 +17,7 @@
           class="ruleForm user-form clearfix"
         >
           <p>
-            <el-form-item style="margin-bottom: 5px" label="待重置的工作人员名：">{{resetUserName}}</el-form-item>
+            <el-form-item style="margin-bottom: 5px" label="待重置的用户名：">{{resetUserName}}</el-form-item>
           </p>
           <p>
             <el-form-item style="margin-bottom: 5px" label="待重置工作人员姓名：">{{resetName}}</el-form-item>

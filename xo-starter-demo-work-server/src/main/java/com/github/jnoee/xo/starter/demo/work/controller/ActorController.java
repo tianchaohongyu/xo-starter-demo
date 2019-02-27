@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/workers", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Api(tags = "工作人员")
-@RequiresRoles("user")
+@RequiresRoles("worker")
 public class ActorController {
   @Autowired
   private ActorService actorService;
