@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/users", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(path = "/workers", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Api(tags = "工作人员")
 @RequiresRoles("user")
 public class ActorController {
