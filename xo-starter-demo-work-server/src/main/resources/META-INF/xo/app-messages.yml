@@ -25,6 +25,9 @@ l:
     set-default: 设置默认职务[{0}-{1}]。
   person:
     change-pwd: 修改密码。
+  identity:
+    add: 新增用户身份[{0}]。
+    edit: 编辑用户身份[{0}]。
 e:
   organ:
     add:
@@ -47,3 +50,9 @@ e:
   person:
     change-pwd:
       old-pwd-wrong: 原密码错误。
+  identity:
+    add:
+      name:
+        exist: 用户身份名[{0}]已存在。
+      code:
+        exist: 用户身份代码[{0}]已存在。
