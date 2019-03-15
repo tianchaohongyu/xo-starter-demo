@@ -48,7 +48,7 @@ public class VisitorService implements AuthUserService<Visitor> {
 
   @Override
   public Visitor getByUsername(String username) {
-    return visitorDao.findUnique("phone", username);
+    return visitorDao.findUnique("mobile", username);
   }
 
   @Override
