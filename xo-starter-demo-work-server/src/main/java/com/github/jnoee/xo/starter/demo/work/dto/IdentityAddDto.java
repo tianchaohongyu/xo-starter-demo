@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class IdentityAddDto {
@@ -16,7 +17,7 @@ public class IdentityAddDto {
   @ApiModelProperty(value = "代码", required = true)
   private String code;
 
-  @NotBlank
+  @NotNull
   @ApiModelProperty(value = "类型", required = true)
   private IdentityType type;
 }

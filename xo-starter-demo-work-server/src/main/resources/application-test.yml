@@ -11,7 +11,7 @@ spring:
     database: mysql
     show-sql: false
 logging:
-  file: ./logs/xo-demo-rest.log
+  file: ./logs/xo-work.log
   level:
     com:
       github:

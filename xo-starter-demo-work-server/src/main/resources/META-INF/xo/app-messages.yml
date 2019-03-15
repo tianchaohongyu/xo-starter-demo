@@ -28,6 +28,12 @@ l:
   identity:
     add: 新增用户身份[{0}]。
     edit: 编辑用户身份[{0}]。
+    delete: 删除用户身份[{0}:{1}]。
+  visitor:
+    add: 新增用户[{0}:{1}]。
+    edit: 编辑用户[{0}:{1}]。
+    enable: 启用用户[{{0}:{1}]。
+    disable: 停用用户[{0}:{1}]。
 e:
   organ:
     add:
@@ -56,3 +62,21 @@ e:
         exist: 用户身份名[{0}]已存在。
       code:
         exist: 用户身份代码[{0}]已存在。
+    edit:
+      name:
+        exist: 用户身份名[{0}]已存在。
+      code:
+        exist: 用户身份代码[{0}]已存在。
+        defaulted:
+          not-supported: 不允许修改默认身份的编码。
+    delete:
+      name:
+        used: 用户身份已有用户使用，所以不可删除。
+      defaulted:
+        not-supported: 不允许删除默认身份。
+  visitor:
+    get:
+      not-exist: 没有找到ID为[{0}]的用户。
+    add:
+      mobile:
+        exist: 手机[{0}]已存在。

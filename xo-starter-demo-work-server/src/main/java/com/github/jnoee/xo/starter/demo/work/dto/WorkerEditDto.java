@@ -29,6 +29,8 @@ public class WorkerEditDto {
   private Integer ordinal;
 
   public Worker toUser() {
-    return VoUtils.copy(this, Worker.class);
+    Worker worker = VoUtils.copy(this, Worker.class);
+    worker.setStatus(null);
+    return worker;
   }
 }
