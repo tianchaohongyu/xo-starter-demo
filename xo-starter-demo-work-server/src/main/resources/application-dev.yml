@@ -4,14 +4,14 @@ spring:
       enabled: true
   datasource:
     druid:
-      url: jdbc:h2:mem:demo;DB_CLOSE_DELAY=-1
-      username: sa
-      password: null
+      url: jdbc:mysql://192.168.1.250/xo?autoReconnect=true&amp;characterEncoding=UTF-8
+      username: cm
+      password: cm
       initial-size: 5
       min-idle: 0
       max-active: 20
   jpa:
-    database: h2
+    database: mysql
     show-sql: true
     properties:
       hibernate:
