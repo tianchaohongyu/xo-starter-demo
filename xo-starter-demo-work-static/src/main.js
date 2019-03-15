@@ -31,6 +31,7 @@ new Vue({
   },
   methods: {
     initEnums(){
+      Vue.prototype.$enums = {};  //先初始化,避免undefined错误
       getEnumList().then((res) => {
         //res.data: [{name: "EnabledStatus", des: "EnabledStatus", items: {0: "停用", 1: "启用"}},…]
         //转化为:{EnabledStatus: [{text: "停用", value:"0"}, {text: "启用", value:"1"}]}

@@ -8,12 +8,13 @@ import request from '@/bin/utils/request'
  * @param orderBy 排序字段
  * @param sort    升序模式
  * @param keyword 关键字
+ * @param status 状态
  */
-export function getVisitorList({pageNum, pageSize, orderBy, sort, keyword} = data) {
+export function getVisitorList({pageNum, pageSize, orderBy, sort, keyword, status, identityId} = data) {
   return request({
     url: '/visitors',
     method: 'GET',
-    params:{pageNum, pageSize, orderBy, sort, keyword},
+    params:{pageNum, pageSize, orderBy, sort, keyword, status, identityId, },
   })
 }
 

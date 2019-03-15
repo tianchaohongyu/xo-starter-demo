@@ -1,6 +1,7 @@
 package com.github.jnoee.xo.starter.demo.core.entity.visit;
 
 import com.github.jnoee.xo.auth.server.AuthUser;
+import com.github.jnoee.xo.ienum.bridge.IEnumTextBridge;
 import com.github.jnoee.xo.jpa.audit.annotation.LogField;
 import com.github.jnoee.xo.starter.demo.core.entity.base.PeriodUuidEntity;
 import com.github.jnoee.xo.starter.demo.core.enums.EnabledStatus;
@@ -9,10 +10,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
-import org.hibernate.search.annotations.Analyze;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -52,7 +50,7 @@ public class Visitor extends PeriodUuidEntity implements AuthUser {
   private Identity identity;
 
   /** 启用状态 */
-  @Field(analyze = Analyze.NO)
+  @Field(analyze = Analyze.NO, bridge = @FieldBridge(impl = IEnumTextBridge.class))
   @LogField(text = "启用状态")
   @Type(type = "IEnum")
   private EnabledStatus status = EnabledStatus.ENABLED;

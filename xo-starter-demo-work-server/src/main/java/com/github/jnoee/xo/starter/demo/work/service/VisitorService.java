@@ -11,6 +11,7 @@ import com.github.jnoee.xo.model.PageQuery;
 import com.github.jnoee.xo.starter.demo.core.entity.visit.Visitor;
 import com.github.jnoee.xo.starter.demo.core.enums.EnabledStatus;
 import com.github.jnoee.xo.utils.BeanUtils;
+import com.github.jnoee.xo.utils.StringUtils;
 import org.apache.lucene.search.SortField;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,9 +28,18 @@ public class VisitorService {
   @Resource
   private MessageSource messageSource;
 
+  /**
+   * 搜索分页
+   *
+   * @param query      分页参数
+   * @param identityId 身份id
+   * @param status     状态
+   */
   @Transactional(readOnly = true)
-  public Page<Visitor> search(PageQuery query) {
+  public Page<Visitor> search(PageQuery query, String identityId, EnabledStatus status) {
     FullTextCriteria criteria = visitorDao.createFullTextCriteria();
+    if (StringUtils.isNotBlank(identityId)) criteria.eq("identity.id", identityId);
+    if (status != null) criteria.eq("status", status);
     criteria.desc("createTime", SortField.Type.STRING);
     return visitorDao.searchPage(criteria, query);
   }

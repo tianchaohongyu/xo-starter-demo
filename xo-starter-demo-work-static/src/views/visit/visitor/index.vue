@@ -1,14 +1,17 @@
 <template>
   <div id="visitors">
     <div class="visitors-header clearfix">
+
       <div class="visitors-header-left left">
         <el-button type="primary" size="mini" @click="addDialogShow">新增</el-button>
       </div>
+
       <div class="visitors-header-right right">
         <el-input placeholder="请输入内容" v-model="searchVal" class="input-with-select" size="small">
           <el-button slot="append" icon="el-icon-search" size="small" @click="searchList"></el-button>
         </el-input>
       </div>
+
     </div>
     <div class="visitors-body">
       <el-table
@@ -33,14 +36,44 @@
 
         <el-table-column
           prop="identity.name"
-          label="身份"
-          width="100">
+          width="160">
+
+          <template slot="header" slot-scope="scope">
+              <el-select
+                v-model="params.identityId"
+                filterable
+                remote
+                placeholder="选择身份"
+                :remote-method="searchIdentity"
+                style="width:140px;"
+                size="mini"
+                :loading="false">
+                <el-option label="" value=""></el-option>
+                <el-option
+                  v-for="(item, index) in identityList"
+                  :key="index"
+                  :label="item.name"
+                  :value="item.id">
+                </el-option>
+              </el-select>
+          </template>
+
         </el-table-column>
 
         <el-table-column
           prop="status.text"
-          label="状态"
-          width="100">
+          width="160">
+          <template slot="header" slot-scope="scope">
+              <el-select filterable v-model="params.status" style="width:140px;" size="mini" placeholder="选择状态" value="">
+                <el-option label="" value=""></el-option>
+                <el-option
+                  v-for="(item, index) in enabledStatusList"
+                  :key="index"
+                  :label="item.text"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+          </template>
         </el-table-column>
 
         <el-table-column
@@ -96,6 +129,7 @@
   import HeadImg from '@/components/HeadImg/index'
   import {disableVisitor, enableVisitor, getVisitorList,} from '@/bin/api/visitors'
   import {changeTime} from '@/bin/utils/index'
+  import {getIdentityList} from "@/bin/api/identitys";
 
   export default {
   name: "Users",
@@ -108,9 +142,13 @@
     return {
       // 列表数据
       visitorList: [],
+      identityList:[],
+      enabledStatusList:[],
       searchVal: '',    // 关键字
       // 参数
       params:{
+        identityId: '',
+        status: '',
         'keyword': '',
         'orderBy': '',
         'pageNum': 1,
@@ -128,6 +166,13 @@
   mounted(){
     // 初始化数据
     this.initData();
+    this.searchIdentity();
+    let timerId = setInterval(() => {
+      if(this.enabledStatusList.length == 0 && this.$enums.EnabledStatus != null){
+        this.enabledStatusList = this.$enums.EnabledStatus;
+        clearInterval(timerId);
+      }
+    }, 1000);
   },
   methods: {
     initData(){
@@ -186,6 +231,20 @@
         });
       });
 
+    },
+    searchIdentity(keyword,then){
+      getIdentityList({
+        pageNum: 1,
+        pageSize: 20,
+        orderBy: '',
+        sort: '',
+        keyword: keyword,
+      }).then(res => {
+        this.identityList = res.data.contents;
+        then && then();
+      }).catch(err => {
+        console.log(err);
+      });
     },
 
     addDialogShow(){
