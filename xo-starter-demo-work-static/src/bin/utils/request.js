@@ -35,8 +35,8 @@ service.interceptors.response.use(
     // 后台无响应
     if(error.response === undefined || error.response === 'undefined') {
       Message({
-        message: '系统繁忙，请稍后或联系管理员。',
-        type: 'error',
+        message: '连接服务器失败，请稍后再试。',
+        type: 'warning',
         duration: 3 * 1000,
         center:true
       })

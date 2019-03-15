@@ -48,7 +48,7 @@
           width="170">
         </el-table-column>
         <el-table-column
-          prop="updateWorker"
+          prop="updateUser"
           label="修改人"
           width="130">
         </el-table-column>
@@ -114,8 +114,8 @@
     disableWorker,
     enableWorker,
     getActorList,
-    getUserList,
     getWorkerInfo,
+    getWorkerList,
     updateWorker
   } from '@/bin/api/workers'
   import {changeTime} from '@/bin/utils/index'
@@ -155,7 +155,7 @@
   },
   methods: {
     initData(){
-      getUserList (this.params).then(res => {
+      getWorkerList (this.params).then(res => {
         let data = res.data
         // 设置分页数据
         this.pageNum = data.number
@@ -173,46 +173,42 @@
     },
     // 停用
     blockUp(id) {
-      disableWorker(id).then(res => {
-        this.$confirm('您确定要停用该工作人员吗？', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
+      this.$confirm('您确定要停用该工作人员吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        disableWorker(id).then(res => {
           this.$message({
             type: 'success',
             message: '停用工作人员成功!',
             center: true
           });
           this.initData();
-        }).catch(() => {
+        }).catch(err => {
           return false
         })
-      }).catch(err => {
-        return false
-      })
+      });
     },
 
     // 启用
     startUp(id) {
-      enableWorker(id).then(res => {
-        this.$confirm('您确定要启用该工作人员吗？', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
+      this.$confirm('您确定要启用该工作人员吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        enableWorker(id).then(res => {
           this.$message({
             type: 'success',
             message: '启用工作人员成功!',
             center: true
           });
           this.initData();
-        }).catch(() => {
+        }).catch(err => {
           return false
-        })
-      }).catch(err => {
-        return false
-      })
+        });
+      });
     },
 
     addDialogShow(){

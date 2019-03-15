@@ -13,16 +13,36 @@ import '@/permission'
 import directives from "./directive"
 
 import {getCookies, getToken} from '@/bin/utils/auth'
+import {getEnumList} from '@/bin/api/globals'
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 Vue.use(directives);
-Vue.use(ElementUI)
+Vue.use(ElementUI);
 
 new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App)
-})
+  render: h => h(App),
+  mounted(){
+    this.initEnums();
+  },
+  methods: {
+    initEnums(){
+      getEnumList().then((res) => {
+        //res.data: [{name: "EnabledStatus", des: "EnabledStatus", items: {0: "停用", 1: "启用"}},…]
+        //转化为:{EnabledStatus: [{text: "停用", value:"0"}, {text: "启用", value:"1"}]}
+        let enums = {};
+        res.data.forEach((it) =>{
+            enums[it.name] = [];
+            for(let key in it.items){
+              enums[it.name].push({text: it.items[key], value: key});
+            }
+        });
+        Vue.prototype.$enums = enums;
+      });
+    },
+  },
+});

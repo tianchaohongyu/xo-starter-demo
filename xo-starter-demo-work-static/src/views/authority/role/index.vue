@@ -34,6 +34,12 @@
                 <h4>角色权限：</h4>
                 <ul class="info-permission">
                   <li>
+                    <p>用户：</p>
+                    <p>
+                      <el-checkbox v-model="checkList.visitor">管理</el-checkbox>
+                    </p>
+                  </li>
+                  <li>
                     <p>机构：</p>
                     <p>
                       <el-checkbox v-model="checkList.organ">管理</el-checkbox>
@@ -96,6 +102,12 @@
         <div class="info-body">
             <h4>角色权限：</h4>
             <ul class="info-permission">
+              <li>
+                <p>用户：</p>
+                <p>
+                  <el-checkbox v-model="checkList.visitor">管理</el-checkbox>
+                </p>
+              </li>
               <li>
                 <p>机构：</p>
                 <p>

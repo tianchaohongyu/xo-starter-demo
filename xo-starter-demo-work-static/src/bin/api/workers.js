@@ -2,7 +2,7 @@ import request from '@/bin/utils/request'
 
 
 // 查询工作人员列表
-export function getUserList({pageNum, pageSize, orderBy, sort, keyword} = data) {
+export function getWorkerList({pageNum, pageSize, orderBy, sort, keyword} = data) {
   return request({
     url: '/workers?pageNum=' + pageNum + '&pageSize=' + pageSize + '&orderBy=' + orderBy + '&sort=' + sort + '&keyword=' + keyword,
     method: 'GET'

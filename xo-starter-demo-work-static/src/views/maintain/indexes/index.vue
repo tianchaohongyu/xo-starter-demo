@@ -2,6 +2,12 @@
   <div id="indexes" style="padding:20px;">
     <div class="indexes-header">
       <el-button type="primary" size="mini" @click="reBuild">重建全文索引</el-button>
+
+      <div class="visitors-header-right right">
+        <el-input placeholder="过滤内容" v-model="searchVal" class="input-with-select" size="small">
+          <el-button slot="append" icon="el-icon-search" size="small" @click="filter"></el-button>
+        </el-input>
+      </div>
     </div>
     <div class="indexes-body">
       <el-table
@@ -10,16 +16,28 @@
         tooltip-effect="dark"
         style="width: 100%"
         border
+        :default-sort = "{prop: 'simpleName', order: 'ascending'}"
         @selection-change="handleSelectionChange">
         <el-table-column
           type="selection"
           width="55">
         </el-table-column>
+
         <el-table-column
-          prop="name"
+          sortable
+          prop="simpleName"
           label="实体类名"
+          width="150">
           >
         </el-table-column>
+
+        <el-table-column
+          sortable
+          prop="name"
+          label="全名"
+          >
+        </el-table-column>
+
       </el-table>
     </div>
   </div>
@@ -33,8 +51,10 @@
   data() {
     return {
       indexList: [],                // 列表数据
+      vo:[],
       multipleSelection: [],        // 复选框选中数据
-      rebuildData: []               // 重建索引数据
+      rebuildData: [],               // 重建索引数据
+      searchVal: '',
     }
   },
   mounted() {
@@ -45,15 +65,19 @@
     // 初始化获取数据
     initData() {
       getIndexList().then(res => {
-        let data = res.data
-        data.map((item,index) => {
-          let obj = {}
-          obj.name = item
-          this.indexList.push(obj)
-        })
+        let data = res.data;
+        this.vo = data.map((it,index) => {
+          return {name: it, simpleName: it.split('.').pop(), indexName: it.toLowerCase()};
+        });
+        this.indexList = this.vo;
       }).catch(err => {
         console.log(err)
       })
+    },
+
+    filter(){
+      let value = this.searchVal.toLowerCase();
+      this.indexList = this.vo.filter((it) => it.indexName.indexOf(value) != -1);
     },
 
     // 复选框选择数据
@@ -84,7 +108,7 @@
               message: '重建全文索引成功',
               type: 'success',
               center:true,
-            })
+            });
             this.$refs.multipleTable.clearSelection();
           }).catch(err => {
             this.$message({
@@ -92,7 +116,7 @@
               type: 'error',
               center:true
             })
-          })
+          });
         }).catch(err => {
 
         })

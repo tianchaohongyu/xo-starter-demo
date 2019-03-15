@@ -58,6 +58,27 @@ export default new Router({
 // 需要根据权限动态添加的路由
 export const asyncRouterMap = [
   {
+    path: '/visit',
+    component: Layout,
+    redirect: 'noredirect',
+    name: 'Visits',
+    meta: { title: '用户管理', icon: 'tree' },
+    children: [
+      {
+        path: 'identity',
+        name: 'Identitys',
+        component: () => import('@/views/visit/identity/index'),
+        meta: { title: '身份管理', icon: 'tree', privilegs: ['visitor'] },
+      },
+      {
+        path: 'visitor',
+        name: 'Visitors',
+        component: () => import('@/views/visit/visitor/index'),
+        meta: { title: '用户管理', icon: 'user', privilegs: ['visitor'] },
+      }
+    ]
+  },
+  {
     path: '/authority',
     component: Layout,
     redirect: 'noredirect',

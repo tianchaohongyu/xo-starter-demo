@@ -6,6 +6,13 @@
       <el-button type="primary" size="mini" @click="delCollectionCacheData()">清理所有集合缓存</el-button>
       <el-button type="primary" size="mini" @click="delQueryCacheData()">清理所有查询缓存</el-button>
       <el-button type="primary" size="mini" @click="delCacheAllData()">清理所有缓存</el-button>
+
+      <div class="visitors-header-right right">
+        <el-input placeholder="过滤内容" v-model="searchVal" class="input-with-select" size="small">
+          <el-button slot="append" icon="el-icon-search" size="small" @click="filter"></el-button>
+        </el-input>
+      </div>
+
     </div>
     <div class="cache-body">
       <el-table
@@ -14,16 +21,28 @@
         tooltip-effect="dark"
         style="width: 100%"
         border
+        :default-sort = "{prop: 'simpleName', order: 'ascending'}"
         @selection-change="handleSelectionChange">
         <el-table-column
           type="selection"
           width="55">
         </el-table-column>
+
         <el-table-column
-          prop="name"
+          sortable
+          prop="simpleName"
           label="实体类名"
+          width="150">
           >
         </el-table-column>
+
+        <el-table-column
+          sortable
+          prop="name"
+          label="全名"
+        >
+        </el-table-column>
+
       </el-table>
     </div>
   </div>
@@ -46,6 +65,8 @@
       cacheList: [],                // 缓存列表
       multipleSelection: [],        // 复选框选中数据
       clearData: [],                // 需要清理的实体缓存
+      vo:[],
+      searchVal: '',
       tips1:['您确定要清理选中的实体缓存吗？', '清理实体缓存成功。', '清理实体缓存失败。'],
       tips2:['您确定要清理所有实体缓存吗？', '清理所有实体缓存成功。', '清理所有实体缓存失败。'],
       tips3:['您确定要清理所有集合缓存吗？', '清理所有集合缓存成功。', '清理所有集合缓存成功。'],
@@ -61,13 +82,16 @@
     // 初始化列表数据
     initData() {
       getCacheList().then(res => {
-        let data = res.data
-        data.map((item,index) => {
-          let obj = {}
-          obj.name = item
-          this.cacheList.push(obj)
-        })
+        this.vo = res.data.map((it,index) => {
+          return {name: it, simpleName: it.split('.').pop(), indexName: it.toLowerCase()};
+        });
+        this.cacheList = this.vo;
       })
+    },
+
+    filter(){
+      let value = this.searchVal.toLowerCase();
+      this.cacheList = this.vo.filter((it) => it.indexName.indexOf(value) != -1);
     },
 
     // 复选框选择数据
