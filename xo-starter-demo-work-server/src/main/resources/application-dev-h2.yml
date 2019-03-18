@@ -10,6 +10,8 @@ spring:
       initial-size: 5
       min-idle: 0
       max-active: 20
+    schema: ./xo-starter-demo-db/init.sql
+    data: ./xo-starter-demo-db/data.sql
   jpa:
     database: h2
     show-sql: true
