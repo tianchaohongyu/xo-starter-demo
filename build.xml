@@ -16,7 +16,7 @@
 		</classpath>
 	</taskdef>
 
-	<target name="all" depends="init,copy.project,modify.pom,modify.yml,modify.package,modify.db,destroy" description="构建新项目" />
+	<target name="all" depends="init,copy.project,modify.pom,modify.yml,modify.package,modify.db,modify.server-static,destroy" description="构建新项目" />
 
 	<target name="init">
 		<input message="生成项目到哪个目录：" addproperty="destDir" defaultvalue="c:/demo" />
@@ -46,10 +46,12 @@
 			<fileset dir=".">
 				<include name="*/src/" />
 				<include name="${origArtifactId}-db/" />
-				<exclude name="${origArtifactId}-work-static/node_modules" />
-				<include name="${origArtifactId}-work-static/**" />
 				<include name="*/pom.xml" />
 				<include name="pom.xml" />
+				<include name="${origArtifactId}-work-static/*" />
+				<include name="${origArtifactId}-work-static/config/**" />
+				<include name="${origArtifactId}-work-static/build/**" />
+				<include name="${origArtifactId}-work-static/static/**" />
 			</fileset>
 		</copy>
 	</target>
@@ -72,10 +74,12 @@
 		<foreach list="${moduleNames}" target="modify.package.each" param="moduleName" delimiter="," inheritall="yes" />
 		<replace dir="${destDir}" encoding="UTF-8" token="${origPackageName}" value="${destPackageName}">
 			<include name="**/*.java" />
+			<include name="**/*.kt" />
 			<include name="**/*.ftl" />
 		</replace>
 		<replace dir="${destDir}" encoding="UTF-8" token="${origPackagePath}" value="${destPackagePath}">
 			<include name="**/*.java" />
+			<include name="**/*.kt" />
 			<include name="**/*.ftl" />
 		</replace>
 	</target>
@@ -87,6 +91,10 @@
 		<move file="${destDir}/${destArtifactId}-db/${origArtifactId}.sws" tofile="${destDir}/${destArtifactId}-db/${destArtifactId}.sws" />
 		<move file="${destDir}/${destArtifactId}-db/${origArtifactId}.pdm" tofile="${destDir}/${destArtifactId}-db/${destArtifactId}.pdm" />
 		<move file="${destDir}/${destArtifactId}-db/${origArtifactId}.pdb" tofile="${destDir}/${destArtifactId}-db/${destArtifactId}.pdb" />
+	</target>
+
+	<target name="modify.server-static" description="修改前端项目">
+		<move file="${destDir}/xo-starter-demo-work-static" tofile="${destDir}/${destArtifactId}-work-static" />
 	</target>
 
 	<target name="destroy" description="清理多余目录和文件">
