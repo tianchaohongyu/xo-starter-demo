@@ -2,7 +2,7 @@
 <project name="NewProject" default="all" basedir=".">
 	<property name="origGroupId" value="com.github.jnoee" />
 	<property name="origArtifactId" value="xo-starter-demo" />
-	<property name="moduleNames" value="core,rest,dwz" />
+	<property name="moduleNames" value="core,work-server,visit-server" />
 
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
 		<classpath>
@@ -19,7 +19,7 @@
 	<target name="all" depends="init,copy.project,modify.pom,modify.yml,modify.package,modify.db,destroy" description="构建新项目" />
 
 	<target name="init">
-		<input message="生成项目到哪个目录：" addproperty="destDir" defaultvalue="d:/demo" />
+		<input message="生成项目到哪个目录：" addproperty="destDir" defaultvalue="c:/demo" />
 		<input message="生成项目的groupId：" addproperty="destGroupId" defaultvalue="com.github.jnoee" />
 		<input message="生成项目的artifactId：" addproperty="destArtifactId" defaultvalue="demo" />
 		<script language="javascript">
@@ -46,6 +46,8 @@
 			<fileset dir=".">
 				<include name="*/src/" />
 				<include name="${origArtifactId}-db/" />
+				<exclude name="${origArtifactId}-work-static/node_modules" />
+				<include name="${origArtifactId}-work-static/**" />
 				<include name="*/pom.xml" />
 				<include name="pom.xml" />
 			</fileset>
