@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="NewProject" default="all" basedir=".">
-	<property name="origGroupId" value="com.github.jnoee" />
+	<property name="origGroupId" value="com.github.jnoee.xo.starter.demo" />
 	<property name="origArtifactId" value="xo-starter-demo" />
 	<property name="moduleNames" value="core,work-server,visit-server" />
 
@@ -26,7 +26,7 @@
 			<![CDATA[
 			    var origGroupId = project.getProperty("origGroupId");
 				var origArtifactId = project.getProperty("origArtifactId");
-				var origPackageName = origGroupId + "." + origArtifactId.replace(/\-/g, "\.");
+				var origPackageName = origGroupId;
 				var origPackagePath = origPackageName.replace(/\./g, "/");
 			    project.setProperty("origPackageName", origPackageName);
 				project.setProperty("origPackagePath", origPackagePath);
@@ -116,6 +116,9 @@
 
 	<target name="modify.yml.each" description="修改子项目application.yml文件">
 		<replaceregexp file="${destDir}/${origArtifactId}-${moduleName}/src/main/resources/application.yml" encoding="UTF-8" match="${origPackageName}" replace="${destPackageName}" flags="g" />
+		<replaceregexp file="${destDir}/${origArtifactId}-${moduleName}/src/main/resources/application-dev.yml" encoding="UTF-8" match="${origPackageName}" replace="${destPackageName}" flags="g" />
+		<replaceregexp file="${destDir}/${origArtifactId}-${moduleName}/src/main/resources/application-dev-h2.yml" encoding="UTF-8" match="${origPackageName}" replace="${destPackageName}" flags="g" />
+		<replaceregexp file="${destDir}/${origArtifactId}-${moduleName}/src/main/resources/application-test.yml" encoding="UTF-8" match="${origPackageName}" replace="${destPackageName}" flags="g" />
 	</target>
 
 	<target name="modify.package.each" description="修改子项目包路径（目录）">
