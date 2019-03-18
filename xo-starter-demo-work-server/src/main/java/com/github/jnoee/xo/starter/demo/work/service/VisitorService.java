@@ -10,6 +10,7 @@ import com.github.jnoee.xo.model.Page;
 import com.github.jnoee.xo.model.PageQuery;
 import com.github.jnoee.xo.starter.demo.core.entity.visit.Visitor;
 import com.github.jnoee.xo.starter.demo.core.enums.EnabledStatus;
+import com.github.jnoee.xo.starter.demo.core.service.CoreVisitorService;
 import com.github.jnoee.xo.utils.BeanUtils;
 import com.github.jnoee.xo.utils.StringUtils;
 import org.apache.lucene.search.SortField;
@@ -27,6 +28,8 @@ public class VisitorService {
   private FullTextDao<Visitor> visitorDao;
   @Resource
   private MessageSource messageSource;
+  @Resource
+  private CoreVisitorService coreVisitorService;
 
   /**
    * 搜索分页
@@ -58,7 +61,7 @@ public class VisitorService {
   public void create(Visitor visitor) {
     if (!visitorDao.isUnique(visitor, "mobile"))
       messageSource.thrown("e.visitor.add.mobile.exist", visitor.getMobile());
-    visitorDao.save(visitor);
+    coreVisitorService.create(visitor);
   }
 
   @Transactional
@@ -67,6 +70,15 @@ public class VisitorService {
     if (!visitorDao.isUnique(visitor, "mobile"))
       messageSource.thrown("e.visitor.add.mobile.exist", visitor.getMobile());
     Visitor origVisitor = get(visitor.getId());
+    //如果由设置密码则先更新
+    if (StringUtils.isNotBlank(visitor.getPassword()))
+      coreVisitorService.updatePassword(origVisitor, visitor.getPassword());
+    if (StringUtils.isNotBlank(visitor.getSafePassword()))
+      coreVisitorService.updateSafePassword(origVisitor, visitor.getSafePassword());
+    //清理密码参数
+    visitor.setPassword(null);
+    visitor.setSafePassword(null);
+
     BeanUtils.copyFields(visitor, origVisitor);
     origVisitor.setMobile(visitor.getMobile()); //手机号码如果前端置为null也将其
   }

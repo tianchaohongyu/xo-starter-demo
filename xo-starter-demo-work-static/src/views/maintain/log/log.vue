@@ -151,7 +151,7 @@
         // 列表数据
         this.tableData =  data.contents
         data.contents.map((item,index) => {
-          this.tableData[index].operateTime = changeTime(item.operateTime)
+          this.tableData[log].operateTime = changeTime(item.operateTime)
         })
       }).catch(error => {
         console.log(error)

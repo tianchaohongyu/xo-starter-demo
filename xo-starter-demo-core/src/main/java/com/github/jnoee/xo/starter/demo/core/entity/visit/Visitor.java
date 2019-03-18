@@ -43,6 +43,12 @@ public class Visitor extends PeriodUuidEntity implements AuthUser {
   /** 密码 */
   private String password;
 
+  /** 密码 */
+  private String safePassword;
+
+  /** 盐 */
+  private String salt;
+
   /** 身份 */
   @IndexedEmbedded(includePaths = {"id"})
   @OneToOne(fetch = FetchType.LAZY)

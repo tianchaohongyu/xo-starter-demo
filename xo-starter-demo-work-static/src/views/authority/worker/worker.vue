@@ -170,8 +170,8 @@
         // 处理列表数据
         this.userList = data.contents
         data.contents.map((item,index) => {
-          this.userList[index].createTime = changeTime(item.createTime)
-          this.userList[index].updateTime = changeTime(item.updateTime)
+          this.userList[worker].createTime = changeTime(item.createTime)
+          this.userList[worker].updateTime = changeTime(item.updateTime)
         })
       }).catch(err => {
         console.log(err)

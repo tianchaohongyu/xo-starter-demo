@@ -45,9 +45,17 @@
               </el-form-item>
             </div>
 
+            <div class="clearfix"></div>
+
             <div class="left user-info-option">
               <el-form-item label="密码：" prop="password">
                 <el-input v-model="dto.password" size="small" placeholder="请输入密码"></el-input>
+              </el-form-item>
+            </div>
+
+            <div class="left user-info-option">
+              <el-form-item label="安全密码：" prop="safePassword">
+                <el-input v-model="dto.safePassword" size="small" placeholder="请输入安全密码"></el-input>
               </el-form-item>
             </div>
 
@@ -81,6 +89,7 @@
         imgUrl: "",
         mobile: "",
         password: "",
+        safePassword: "",
         identityId: "",
       },
 

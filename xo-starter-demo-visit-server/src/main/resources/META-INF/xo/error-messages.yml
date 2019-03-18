@@ -1,0 +1,4 @@
+e:
+  name: 演示系统
+  visitor:
+    passwordError: 原密码错误。

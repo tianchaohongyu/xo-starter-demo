@@ -1,39 +1,3 @@
-app:
-  name: 演示系统
-l:
-  organ:
-    add: 新增机构[{0}]。
-    edit: 编辑机构[{0}]。
-    del: 删除机构[{0}]。
-    enable: 启用机构[{0}]。
-    disable: 停用机构[{0}]。
-  role:
-    add: 新增角色[{0}]。
-    edit: 编辑角色[{0}]。
-  worker:
-    logon: 登录系统[{0}]。
-    add: 新增工作人员[{0}]。
-    edit: 编辑工作人员[{0}]。
-    del: 删除工作人员[{0}]。
-    enable: 启用工作人员[{0}]。
-    disable: 停用工作人员[{0}]。
-    reset-pwd: 重置工作人员[{0}]的密码。
-  actor:
-    add: 新增职务[{0}-{1}]。
-    edit: 编辑职务[{0}-{1}]。
-    del: 删除职务[{0}-{1}]。
-    set-default: 设置默认职务[{0}-{1}]。
-  person:
-    change-pwd: 修改密码。
-  identity:
-    add: 新增用户身份[{0}]。
-    edit: 编辑用户身份[{0}]。
-    delete: 删除用户身份[{0}:{1}]。
-  visitor:
-    add: 新增用户[{0}:{1}]。
-    edit: 编辑用户[{0}:{1}]。
-    enable: 启用用户[{{0}:{1}]。
-    disable: 停用用户[{0}:{1}]。
 e:
   organ:
     add:

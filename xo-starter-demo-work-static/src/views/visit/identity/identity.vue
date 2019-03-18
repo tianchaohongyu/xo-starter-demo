@@ -145,8 +145,8 @@
           // 处理列表数据
           this.identityList = data.contents
           data.contents.forEach((item,index) => {
-            this.identityList[index].createTime = changeTime(item.createTime)
-            this.identityList[index].updateTime = changeTime(item.updateTime)
+            this.identityList[identity].createTime = changeTime(item.createTime)
+            this.identityList[identity].updateTime = changeTime(item.updateTime)
           });
         }).catch(err => {
           console.log(err)

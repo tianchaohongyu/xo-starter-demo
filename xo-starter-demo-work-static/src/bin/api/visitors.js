@@ -24,13 +24,14 @@ export function getVisitorList({pageNum, pageSize, orderBy, sort, keyword, statu
  * @param imgUrl 头像
  * @param mobile 手机
  * @param password 密码
+ * @param safePassword 安全密码
  * @param identityId 身份id
  */
-export function addVisitor({nickName, imgUrl, mobile, password, identityId} = data) {
+export function addVisitor({nickName, imgUrl, mobile, password,safePassword, identityId} = data) {
   return request({
     url: '/visitors',
     method: 'POST',
-    data: {nickName, imgUrl :imgUrl || null, mobile: mobile || null, password : password || null, identityId}
+    data: {nickName, imgUrl :imgUrl || null, mobile: mobile || null, password : password || null,safePassword:safePassword || null, identityId}
   })
 }
 
@@ -41,13 +42,14 @@ export function addVisitor({nickName, imgUrl, mobile, password, identityId} = da
  * @param imgUrl 图片链接
  * @param mobile 手机
  * @param password 密码
+ * @param safePassword 安全密码
  * @param identity 身份
  */
-export function updateVisitor({id, nickName, imgUrl, mobile, password, identityId} = data) {
+export function updateVisitor({id, nickName, imgUrl, mobile, password,safePassword, identityId} = data) {
   return request({
     url: '/visitors',
     method: 'PUT',
-    data: {id, nickName, imgUrl :imgUrl || null, mobile: mobile || null, password : password || null, identityId}
+    data: {id, nickName, imgUrl :imgUrl || null, mobile: mobile || null, password : password || null,safePassword:safePassword || null, identityId}
   })
 }
 

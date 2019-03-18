@@ -31,7 +31,7 @@ export const constantRouterMap = [
     children: [{
       path: 'system',
       name: 'Home',
-      component: () => import('@/views/system/index'),
+      component: () => import('@/views/system/system'),
       meta: { title: '首页', icon: 'example' }
     }]
   },
@@ -67,13 +67,13 @@ export const asyncRouterMap = [
       {
         path: 'identity',
         name: 'Identitys',
-        component: () => import('@/views/visit/identity/index'),
+        component: () => import('@/views/visit/identity/identity'),
         meta: { title: '身份管理', icon: 'tree', privilegs: ['visitor'] },
       },
       {
         path: 'visitor',
         name: 'Visitors',
-        component: () => import('@/views/visit/visitor/index'),
+        component: () => import('@/views/visit/visitor/visitor'),
         meta: { title: '用户管理', icon: 'user', privilegs: ['visitor'] },
       }
     ]
@@ -100,7 +100,7 @@ export const asyncRouterMap = [
       {
         path: 'worker',
         name: 'Workers',
-        component: () => import('@/views/authority/worker/index'),
+        component: () => import('@/views/authority/worker/worker'),
         meta: { title: '工作人员管理', icon: 'user', privilegs: ['worker'] },
       }
     ]
@@ -117,20 +117,20 @@ export const asyncRouterMap = [
     children: [
       {
         path: 'log',
-        component: () => import('@/views/maintain/log/index'), // Parent router-view
+        component: () => import('@/views/maintain/log/log'), // Parent router-view
         name: 'Logs',
         meta: { title: '日志管理', icon: 'bug', privilegs: ['log'] },
       },
       {
         path: 'index',
         name: 'Index',
-        component: () => import('@/views/maintain/indexes/index'),
+        component: () => import('@/views/maintain/indexes/indexes'),
         meta: { title: '全文索引', icon: 'list', privilegs: ['index'] },
       },
       {
         path: 'cache',
         name: 'Caches',
-        component: () => import('@/views/maintain/cache/index'),
+        component: () => import('@/views/maintain/cache/cache'),
         meta: { title: '实体缓存', icon: 'nested', privilegs: ['cache'] },
       }
     ]
