@@ -20,6 +20,9 @@ public class WorkerVo {
   @ApiModelProperty(value = "姓名")
   private String name;
 
+  @ApiModelProperty(value = "姓名")
+  private String imgUrl;
+
   @ApiModelProperty(value = "默认职务")
   private String defaultActor;
 

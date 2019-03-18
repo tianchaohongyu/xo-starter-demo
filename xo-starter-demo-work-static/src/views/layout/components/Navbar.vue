@@ -4,45 +4,47 @@
       <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
       <breadcrumb />
       <div class="role">
-        {{defaultInfo.name}} &nbsp;({{defaultInfo.organName}}--{{defaultInfo.roleName}})
-        <el-dropdown class="role-name" trigger="click" @command="toggleActors">
-          <span class="toggle-role">[切换职务]</span>
+        <el-dropdown class="avatar-container" size="medium" trigger="click">
+          <div class="avatar-wrapper">
+            <img :src="myInfo.imgUrl" class="user-avatar">
+            <i class="el-icon-caret-bottom" />
+          </div>
           <el-dropdown-menu slot="dropdown" class="user-dropdown">
-            <el-dropdown-item
-              :style="item.defaulted === true ? 'display:block;background-color: #ecf5ff;color: #66b1ff' : 'display:block;'"
-              v-for="(item, index) in actorList"
-              :key="index"
-              :command="item"
-              :disabled="item.defaulted"
-            >
-              <span>{{item.name}} ({{item.organName}}--{{item.roleName}})</span>
-            </el-dropdown-item>
+            <router-link class="inlineBlock" to="/">
+              <el-dropdown-item>
+                回到首页
+              </el-dropdown-item>
+            </router-link>
+            <div @click="dialogShow">
+              <el-dropdown-item divided>
+                <span style="display:block;">修改密码</span>
+              </el-dropdown-item>
+            </div>
+            <div @click="logout">
+              <el-dropdown-item divided>
+                <span style="display:block;">退出登录</span>
+              </el-dropdown-item>
+            </div>
           </el-dropdown-menu>
         </el-dropdown>
-      </div>
-      <el-dropdown class="avatar-container" size="medium" trigger="click">
-        <div class="avatar-wrapper">
-          <img :src="headerImg" class="user-avatar">
-          <i class="el-icon-caret-bottom"/>
+        <div style="float: left; margin-left: 10px">
+          {{defaultInfo.name}} &nbsp;({{defaultInfo.organName}}--{{defaultInfo.roleName}})
+          <el-dropdown class="role-name" trigger="click" @command="toggleActors">
+            <span class="toggle-role">[切换职务]</span>
+            <el-dropdown-menu slot="dropdown" class="user-dropdown">
+              <el-dropdown-item
+                :style="item.defaulted === true ? 'display:block;background-color: #ecf5ff;color: #66b1ff' : 'display:block;'"
+                v-for="(item, index) in actorList"
+                :key="index"
+                :command="item"
+                :disabled="item.defaulted"
+              >
+                <span>{{item.name}} ({{item.organName}}--{{item.roleName}})</span>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </div>
-        <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <router-link class="inlineBlock" to="/">
-            <el-dropdown-item>
-              回到首页
-            </el-dropdown-item>
-          </router-link>
-          <div @click="dialogShow">
-            <el-dropdown-item divided>
-              <span style="display:block;">修改密码</span>
-            </el-dropdown-item>
-          </div>
-          <div @click="logout">
-            <el-dropdown-item divided>
-              <span style="display:block;">退出登录</span>
-            </el-dropdown-item>
-          </div>
-        </el-dropdown-menu>
-      </el-dropdown>
+      </div>
     </el-menu>
   </div>
 </template>
@@ -50,10 +52,9 @@
 <script>
   import {mapGetters} from 'vuex'
   import {getCookies, setCookies} from '@/bin/utils/auth'
-  import {changePwd, getActorList, toggleActor} from '@/bin/api/person'
+  import {changePwd, getActorList, getMyInfo, toggleActor} from '@/bin/api/person'
   import {getRoleInfo} from '@/bin/api/roles'
 
-  import headerImg from '@/assets/tx.jpg'
   import Hamburger from '@/components/Hamburger'
   import Breadcrumb from '@/components/Breadcrumb'
 
@@ -64,13 +65,14 @@
   },
   data() {
     return {
-      headerImg,
+      myInfo :{ imgUrl: '/static/images/head/default.png', },
       defaultInfo: {}
     }
   },
   mounted() {
     // 获取工作人员信息
     this.defaultInfo = JSON.parse(getCookies('userInfo'))
+    getMyInfo().then((res) => this.myInfo = res.data);
 
     // 获取职务列表
     this.initData()
@@ -167,12 +169,12 @@
   }
   .role {
     position: absolute;
-    right: 100px;
-    top: 16px;
-    margin: 0;
+    right: 20px;
+    top: 0;
     font-size: 14px;
-    font-weight: 700;
     outline: none;
+    height: 48px;
+    line-height: 48px;
     .toggle-role {
       font-weight: 100;
       color: #42a4ff;
@@ -189,11 +191,9 @@
     color: red;
   }
   .avatar-container {
+    float: left;
     height: 50px;
     display: inline-block;
-    position: absolute;
-    right: 35px;
-    top: 0;
     .avatar-wrapper {
       cursor: pointer;
       margin-top: 5px;
@@ -202,12 +202,12 @@
       .user-avatar {
         width: 40px;
         height: 40px;
-        border-radius: 10px;
+        border-radius: 50px;
       }
       .el-icon-caret-bottom {
         position: absolute;
         right: -20px;
-        top: 25px;
+        top: 15px;
         font-size: 12px;
       }
     }

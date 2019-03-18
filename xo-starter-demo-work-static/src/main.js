@@ -26,24 +26,28 @@ new Vue({
   router,
   store,
   render: h => h(App),
-  mounted(){
+  mounted() {
     this.initEnums();
   },
   methods: {
-    initEnums(){
+    initEnums() {
       Vue.prototype.$enums = {};  //先初始化,避免undefined错误
-      getEnumList().then((res) => {
-        //res.data: [{name: "EnabledStatus", des: "EnabledStatus", items: {0: "停用", 1: "启用"}},…]
-        //转化为:{EnabledStatus: [{text: "停用", value:"0"}, {text: "启用", value:"1"}]}
-        let enums = {};
-        res.data.forEach((it) =>{
+      initEnumList();
+
+      function initEnumList() {
+        getEnumList().then((res) => {
+          //res.data: [{name: "EnabledStatus", des: "EnabledStatus", items: {0: "停用", 1: "启用"}},…]
+          //转化为:{EnabledStatus: [{text: "停用", value:"0"}, {text: "启用", value:"1"}]}
+          let enums = {};
+          res.data.forEach((it) => {
             enums[it.name] = [];
-            for(let key in it.items){
+            for (let key in it.items) {
               enums[it.name].push({text: it.items[key], value: key});
             }
-        });
-        Vue.prototype.$enums = enums;
-      });
+          });
+          Vue.prototype.$enums = enums;
+        }).catch(() => setTimeout(initEnumList, 1000 * 30));
+      }
     },
   },
 });

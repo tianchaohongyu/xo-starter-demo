@@ -3,6 +3,7 @@ package com.github.jnoee.xo.starter.demo.work.controller;
 import com.github.jnoee.xo.starter.demo.work.dto.PwdChangeDto;
 import com.github.jnoee.xo.starter.demo.work.service.WorkerService;
 import com.github.jnoee.xo.starter.demo.work.vo.ActorVo;
+import com.github.jnoee.xo.starter.demo.work.vo.WorkerVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -22,6 +23,13 @@ import java.util.List;
 public class PersonController {
   @Autowired
   private WorkerService workerService;
+
+  @ApiOperation(value = "获取个人信息")
+  @GetMapping("myInfo")
+  @RequiresAuthentication
+  public WorkerVo myInfo() {
+    return WorkerVo.forView(workerService.getLogonUser());
+  }
 
   @ApiOperation(value = "修改密码")
   @PatchMapping("change-pwd")

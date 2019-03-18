@@ -8,6 +8,14 @@ export function getActorList() {
     })
 }
 
+// 查询职务列表
+export function getMyInfo() {
+    return request({
+        url: '/person/myInfo',
+        method: 'GET',
+    })
+}
+
 // 切换职务
 export function toggleActor(actorId) {
     return request({

@@ -27,6 +27,9 @@ public class Worker extends AuditEntity<Worker> implements AuthUser {
   @LogField(text = "姓名")
   private String name;
 
+  /** 头像 */
+  private String imgUrl;
+
   /** 工作人员名 */
   @LogField(text = "工作人员名")
   private String username;
@@ -50,13 +53,13 @@ public class Worker extends AuditEntity<Worker> implements AuthUser {
 
   /** 工作人员职务 */
   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE,
-      orphanRemoval = true)
+          orphanRemoval = true)
   @OrderBy("name")
   private List<Actor> actors = new ArrayList<>();
 
   /**
    * 判断是否超级管理员。
-   * 
+   *
    * @return 返回是否超级管理员。
    */
   public Boolean isAdmin() {

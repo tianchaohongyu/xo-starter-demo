@@ -20,12 +20,16 @@
         <el-table-column
           prop="username"
           label="用户名"
-          width="100">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="姓名"
-          width="100">
+          width="200">
+          <template slot-scope="scope">
+            <head-img
+              :img-url="scope.row.imgUrl"
+              :text="scope.row.name"
+              :info="scope.row.username"
+              href="JavaScript:;"
+              @click="editDialogShow(scope.row)">
+            </head-img>
+          </template>
         </el-table-column>
         <el-table-column
           prop="defaultActor"
@@ -108,6 +112,7 @@
   import AddWorker from './components/addWorker'
   import EditWorker from './components/editWorker'
   import ResetPassword from './components/resetPassword'
+  import HeadImg from '@/components/HeadImg/index'
   import {
     addWorker,
     changePwd,
@@ -123,6 +128,7 @@
   export default {
   name: "Users",
   components:{
+    HeadImg,
     Actor,
     AddWorker,
     EditWorker,

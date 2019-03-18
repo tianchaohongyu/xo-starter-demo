@@ -57,7 +57,7 @@ const permission = {
   actions: {
     GenerateRoutes({ commit }, data) {
       return new Promise(resolve => {
-        const privilegs = data.privilegs.split(',')
+        const privilegs = (data.privilegs || '').split(',')
         // const privilegs = ['organ','role','user']
         let accessedRouters = filterRouter(asyncRouterMap, privilegs)
         commit('SET_ROUTERS', accessedRouters)

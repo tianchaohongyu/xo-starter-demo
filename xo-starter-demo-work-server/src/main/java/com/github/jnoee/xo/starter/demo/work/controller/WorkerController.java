@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Random;
 
 @RestController
 @RequestMapping(path = "/workers", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -39,7 +40,9 @@ public class WorkerController {
   @ApiOperation(value = "新增工作人员")
   @PostMapping
   public void create(@RequestBody @Valid WorkerAddDto dto) {
-    workerService.create(dto.toUser());
+    Worker worker = dto.toUser();
+    worker.setImgUrl("/static/images/head/" + new Random().nextInt(2000) + ".jpg");
+    workerService.create(worker);
   }
 
   @ApiOperation(value = "更新工作人员")
