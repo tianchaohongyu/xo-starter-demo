@@ -82,8 +82,8 @@
   methods: {
     init() {
       this.loginForm = {
-        username: 'GaoSir',
-        password: '666666'
+        username: 'admin',
+        password: 'admin'
       }
     },
     showPwd() {

@@ -1,5 +1,6 @@
 package com.github.jnoee.xo.starter.demo;
 
+import com.gitee.tianchaohongyu.jdcl.configuration.EnableRequestMappingParamsClean;
 import com.github.jnoee.xo.ienum.api.EnableIEnumApi;
 import com.github.jnoee.xo.jpa.search.dao.FullTextDaoScan;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan
 @FullTextDaoScan
 //@DaoScan
+@EnableRequestMappingParamsClean
 public class Application {
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);

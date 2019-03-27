@@ -143,10 +143,10 @@
           this.pageSize = data.size
           this.totalNum = data.count
           // 处理列表数据
-          this.identityList = data.contents
-          data.contents.forEach((item,index) => {
-            this.identityList[identity].createTime = changeTime(item.createTime)
-            this.identityList[identity].updateTime = changeTime(item.updateTime)
+          this.identityList = data.contents.map((item,index) => {
+            item.createTime = changeTime(item.createTime);
+            item.updateTime = changeTime(item.updateTime);
+            return item;
           });
         }).catch(err => {
           console.log(err)

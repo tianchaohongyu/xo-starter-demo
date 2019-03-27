@@ -1,6 +1,7 @@
 package com.github.jnoee.xo.starter.demo.work.controller;
 
 import com.github.jnoee.xo.constant.ValidGroup;
+import com.github.jnoee.xo.starter.demo.core.cleaner.ReadData;
 import com.github.jnoee.xo.starter.demo.core.entity.work.Organ;
 import com.github.jnoee.xo.starter.demo.work.dto.OrganAddDto;
 import com.github.jnoee.xo.starter.demo.work.dto.OrganEditDto;
@@ -53,13 +54,13 @@ public class OrganController {
 
   @ApiOperation(value = "启用机构")
   @PatchMapping("enable/{id}")
-  public void enable(@PathVariable(value = "id") Organ organ) {
+  public void enable(@ReadData @PathVariable(value = "id") Organ organ) {
     organService.enable(organ);
   }
 
   @ApiOperation(value = "停用机构")
   @PatchMapping("disable/{id}")
-  public void disable(@PathVariable(value = "id") Organ organ) {
+  public void disable(@ReadData @PathVariable(value = "id") Organ organ) {
     organService.disable(organ);
   }
 }

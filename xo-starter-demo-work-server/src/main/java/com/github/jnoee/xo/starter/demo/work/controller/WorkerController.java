@@ -2,6 +2,7 @@ package com.github.jnoee.xo.starter.demo.work.controller;
 
 import com.github.jnoee.xo.model.Page;
 import com.github.jnoee.xo.model.PageQuery;
+import com.github.jnoee.xo.starter.demo.core.cleaner.ReadData;
 import com.github.jnoee.xo.starter.demo.core.entity.work.Worker;
 import com.github.jnoee.xo.starter.demo.work.dto.WorkerAddDto;
 import com.github.jnoee.xo.starter.demo.work.dto.WorkerEditDto;
@@ -53,19 +54,19 @@ public class WorkerController {
 
   @ApiOperation(value = "停用工作人员")
   @PatchMapping("disable/{id}")
-  public void disable(@PathVariable(value = "id") Worker user) {
+  public void disable(@ReadData @PathVariable(value = "id") Worker user) {
     workerService.disable(user);
   }
 
   @ApiOperation(value = "启用工作人员")
   @PatchMapping("enable/{id}")
-  public void enable(@PathVariable(value = "id") Worker user) {
+  public void enable(@ReadData @PathVariable(value = "id") Worker user) {
     workerService.enable(user);
   }
 
   @ApiOperation(value = "重置密码")
   @PatchMapping("reset/{id}")
-  public void reset(@PathVariable(value = "id") Worker user,
+  public void reset(@ReadData @PathVariable(value = "id") Worker user,
                     @RequestParam(required = true) String managePassword) {
     workerService.resetPassword(managePassword, user);
   }

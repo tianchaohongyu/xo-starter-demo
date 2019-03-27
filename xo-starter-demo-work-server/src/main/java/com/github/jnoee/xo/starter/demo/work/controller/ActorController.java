@@ -1,5 +1,6 @@
 package com.github.jnoee.xo.starter.demo.work.controller;
 
+import com.github.jnoee.xo.starter.demo.core.cleaner.ReadData;
 import com.github.jnoee.xo.starter.demo.core.entity.work.Actor;
 import com.github.jnoee.xo.starter.demo.core.entity.work.Worker;
 import com.github.jnoee.xo.starter.demo.work.dto.ActorAddDto;
@@ -26,10 +27,13 @@ public class ActorController {
 
   @ApiOperation(value = "查询职务列表")
   @GetMapping("{userId}/actors")
+
+  @ReadData
   public List<ActorVo> list(@PathVariable(value = "userId") Worker user) {
     return ActorVo.forList(user);
   }
 
+  @ReadData
   @ApiOperation(value = "新增职务")
   @PostMapping("{userId}/actors")
   public void create(@PathVariable(value = "userId") Worker user,
@@ -37,6 +41,7 @@ public class ActorController {
     actorService.create(dto.toActor(user));
   }
 
+  @ReadData
   @ApiOperation(value = "更新职务")
   @PutMapping("{userId}/actors")
   public void update(@PathVariable(value = "userId") Worker user,
@@ -44,6 +49,7 @@ public class ActorController {
     actorService.update(dto.toActor(user));
   }
 
+  @ReadData
   @ApiOperation(value = "删除职务")
   @DeleteMapping("{userId}/actors/{id}")
   public void delete(@PathVariable(value = "userId") Worker user,
@@ -51,6 +57,7 @@ public class ActorController {
     actorService.delete(actor);
   }
 
+  @ReadData
   @ApiOperation(value = "设置默认职务")
   @PatchMapping("default-actor/{id}")
   public void setDefault(@PathVariable(value = "id") Actor actor) {

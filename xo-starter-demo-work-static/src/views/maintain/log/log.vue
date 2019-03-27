@@ -149,9 +149,9 @@
         this.pageSize = data.size
         this.totalNum = data.count
         // 列表数据
-        this.tableData =  data.contents
-        data.contents.map((item,index) => {
-          this.tableData[log].operateTime = changeTime(item.operateTime)
+        this.tableData =  data.contents.map((item,index) => {
+          item.operateTime = changeTime(item.operateTime);
+          return item;
         })
       }).catch(error => {
         console.log(error)

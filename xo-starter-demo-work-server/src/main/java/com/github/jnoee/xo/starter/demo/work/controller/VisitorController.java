@@ -3,6 +3,7 @@ package com.github.jnoee.xo.starter.demo.work.controller;
 import com.github.jnoee.xo.jpa.dao.DaoUtils;
 import com.github.jnoee.xo.model.Page;
 import com.github.jnoee.xo.model.PageQuery;
+import com.github.jnoee.xo.starter.demo.core.cleaner.ReadData;
 import com.github.jnoee.xo.starter.demo.core.entity.visit.Identity;
 import com.github.jnoee.xo.starter.demo.core.entity.visit.Visitor;
 import com.github.jnoee.xo.starter.demo.core.enums.EnabledStatus;
@@ -97,13 +98,13 @@ public class VisitorController {
 
   @ApiOperation(value = "停用用户")
   @PatchMapping("disable/{id}")
-  public void disable(@PathVariable(value = "id") Visitor visitor) {
+  public void disable(@ReadData @PathVariable(value = "id") Visitor visitor) {
     visitorService.disable(visitor);
   }
 
   @ApiOperation(value = "启用用户")
   @PatchMapping("enable/{id}")
-  public void enable(@PathVariable(value = "id") Visitor visitor) {
+  public void enable(@ReadData @PathVariable(value = "id") Visitor visitor) {
     visitorService.enable(visitor);
   }
 
