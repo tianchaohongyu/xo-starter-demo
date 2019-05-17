@@ -94,7 +94,7 @@ export const asyncRouterMap = [
       {
         path: 'role',
         name: 'Roles',
-        component: () => import('@/views/authority/role/index'),
+        component: () => import('@/views/authority/role/role'),
         meta: { title: '角色管理', icon: 'tree', privilegs: ['role'] },
       },
       {
